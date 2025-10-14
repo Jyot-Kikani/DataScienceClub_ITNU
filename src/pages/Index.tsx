@@ -2,6 +2,7 @@ import { BenefitCard } from "@/components/BenefitCard";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Users, Brain, Code } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from './altlogo.jpg';
 
 const Index = () => {
   const benefits = [
@@ -89,11 +90,18 @@ const Index = () => {
               </div>
             </div>
             <div className="relative animate-fade-in-up">
-              <div className="aspect-square rounded-2xl bg-gradient-primary/20 backdrop-blur-sm border border-primary/30 p-8 flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <Brain className="h-24 w-24 mx-auto text-primary animate-glow-pulse" />
-                  <p className="text-2xl font-bold">Transform Data</p>
-                  <p className="text-muted-foreground">into Intelligence</p>
+              <div className="aspect-square rounded-2xl overflow-hidden border border-primary/30 relative">
+                <img 
+                  src={logo}
+                  alt="Data Science Visualization" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-background/20 flex items-end justify-center p-8">
+                  <div className="text-center space-y-2">
+                    <Brain className="h-16 w-16 mx-auto text-primary animate-glow-pulse" />
+                    <p className="text-2xl font-bold">Transform Data</p>
+                    <p className="text-muted-foreground">into Intelligence</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -122,53 +130,31 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Blogs & Newsletter Section */}
+      {/* Latest Blogs Section */}
       <section className="py-20 px-4">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Stay <span className="bg-gradient-primary bg-clip-text text-transparent">Connected</span>
+              Latest <span className="bg-gradient-primary bg-clip-text text-transparent">Blogs</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Read our latest insights and stay updated with our newsletter
+              Explore tutorials, project showcases, and insights from our community
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 animate-fade-in-up">
-            {/* Blog Section */}
+          <div className="animate-fade-in-up">
             <div className="p-8 rounded-2xl bg-gradient-primary/10 border border-primary/20 hover:shadow-glow transition-all duration-300">
               <div className="w-16 h-16 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground text-2xl font-bold mb-6">
                 📝
               </div>
-              <h3 className="text-2xl font-bold mb-4">Latest Blogs</h3>
+              <h3 className="text-2xl font-bold mb-4">Read Our Blogs</h3>
               <p className="text-muted-foreground mb-6">
-                Explore tutorials, project showcases, and insights from our community members on data science, AI, and machine learning.
+                Dive into tutorials, project showcases, and insights from our community members on data science, AI, and machine learning. Stay updated with the latest trends and techniques.
               </p>
               <Button variant="outline" className="group border-primary/50 hover:bg-primary/10">
                 Read Blogs
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-            </div>
-
-            {/* Newsletter Section */}
-            <div className="p-8 rounded-2xl bg-gradient-primary/10 border border-primary/20 hover:shadow-glow transition-all duration-300">
-              <div className="w-16 h-16 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground text-2xl font-bold mb-6">
-                📬
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Newsletter</h3>
-              <p className="text-muted-foreground mb-6">
-                Subscribe to get updates on upcoming events, workshops, and exclusive resources delivered to your inbox.
-              </p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="your.email@example.com"
-                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                />
-                <Button className="bg-gradient-primary hover:opacity-90 text-primary-foreground">
-                  Subscribe
-                </Button>
-              </div>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import logo from './Logo.jpg';
 
 export const Navigation = () => {
   const { theme, setTheme } = useTheme();
@@ -25,8 +26,13 @@ export const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-xl">
-              DS
+            <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-xl overflow-hidden">
+             <img 
+                src={logo} 
+                alt="Data Science Club Logo" 
+                width={100} 
+                height={100}
+              />
             </div>
             <span className="font-bold text-lg hidden sm:inline-block group-hover:text-primary transition-colors">
               Data Science Club

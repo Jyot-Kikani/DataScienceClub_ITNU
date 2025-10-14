@@ -8,22 +8,36 @@ const Team = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const allMembers = [
-    { name: "Arjun Patel", role: "President", domain: "Leadership & ML", year: "4th Year", skills: ["Leadership", "ML", "Python"], linkedin: "#", github: "#" },
-    { name: "Priya Shah", role: "Vice President", domain: "Events & Analytics", year: "3rd Year", skills: ["Organization", "Data Analytics", "R"], linkedin: "#", github: "#" },
-    { name: "Rahul Kumar", role: "Technical Lead", domain: "Deep Learning", year: "4th Year", skills: ["Deep Learning", "TensorFlow", "PyTorch"], linkedin: "#", github: "#" },
-    { name: "Sneha Desai", role: "Content Head", domain: "NLP & Writing", year: "3rd Year", skills: ["Writing", "NLP", "Documentation"], linkedin: "#", github: "#" },
-    { name: "Ankit Verma", role: "Member", domain: "Machine Learning", year: "3rd Year", skills: ["ML", "Python"], linkedin: "#", github: "#" },
-    { name: "Divya Agarwal", role: "Member", domain: "Data Analytics", year: "2nd Year", skills: ["Analytics", "Visualization"], linkedin: "#", github: "#" },
-    { name: "Karan Singh", role: "Member", domain: "Computer Vision", year: "4th Year", skills: ["CV", "PyTorch"], linkedin: "#", github: "#" },
-    { name: "Neha Joshi", role: "Member", domain: "NLP", year: "3rd Year", skills: ["NLP", "BERT"], linkedin: "#", github: "#" },
-    { name: "Rohan Mehta", role: "Member", domain: "Deep Learning", year: "2nd Year", skills: ["Neural Networks"], linkedin: "#", github: "#" },
-    { name: "Sanya Kapoor", role: "Member", domain: "AI Research", year: "4th Year", skills: ["Research", "AI"], linkedin: "#", github: "#" },
-    { name: "Varun Reddy", role: "Member", domain: "Data Engineering", year: "3rd Year", skills: ["ETL", "Big Data"], linkedin: "#", github: "#" },
-    { name: "Isha Gupta", role: "Member", domain: "Business Analytics", year: "2nd Year", skills: ["Analytics", "SQL"], linkedin: "#", github: "#" },
-    { name: "Aditya Sharma", role: "Member", domain: "ML Engineering", year: "4th Year", skills: ["MLOps", "Python"], linkedin: "#", github: "#" },
-    { name: "Pooja Nair", role: "Member", domain: "Data Science", year: "3rd Year", skills: ["Statistics", "ML"], linkedin: "#", github: "#" },
-    { name: "Vikram Patel", role: "Member", domain: "Big Data", year: "2nd Year", skills: ["Spark", "Hadoop"], linkedin: "#", github: "#" },
-    { name: "Riya Das", role: "Member", domain: "AI Ethics", year: "4th Year", skills: ["Ethics", "AI"], linkedin: "#", github: "#" },
+    // Faculty (4)
+    { name: "Dr. Rajesh Kumar", role: "Faculty", domain: "AI & Machine Learning", year: "Faculty Advisor", skills: ["AI", "Research", "Mentorship"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop" },
+    { name: "Dr. Anjali Mehta", role: "Faculty", domain: "Data Analytics", year: "Faculty Mentor", skills: ["Analytics", "Statistics", "Research"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" },
+    { name: "Dr. Vikram Singh", role: "Faculty", domain: "Deep Learning", year: "Faculty Guide", skills: ["Deep Learning", "Neural Networks"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop" },
+    { name: "Dr. Sneha Patel", role: "Faculty", domain: "NLP Research", year: "Faculty Advisor", skills: ["NLP", "Research", "AI Ethics"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" },
+    
+    // Core Members (11)
+    { name: "Arjun Patel", role: "Core Member", domain: "Leadership & ML", year: "4th Year", skills: ["Leadership", "ML", "Python"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" },
+    { name: "Priya Shah", role: "Core Member", domain: "Events & Analytics", year: "3rd Year", skills: ["Organization", "Data Analytics", "R"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop" },
+    { name: "Rahul Kumar", role: "Core Member", domain: "Deep Learning", year: "4th Year", skills: ["Deep Learning", "TensorFlow", "PyTorch"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop" },
+    { name: "Sneha Desai", role: "Core Member", domain: "NLP & Writing", year: "3rd Year", skills: ["Writing", "NLP", "Documentation"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop" },
+    { name: "Ankit Verma", role: "Core Member", domain: "Machine Learning", year: "3rd Year", skills: ["ML", "Python"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=200&h=200&fit=crop" },
+    { name: "Divya Agarwal", role: "Core Member", domain: "Data Analytics", year: "3rd Year", skills: ["Analytics", "Visualization"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop" },
+    { name: "Karan Singh", role: "Core Member", domain: "Computer Vision", year: "4th Year", skills: ["CV", "PyTorch"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=200&h=200&fit=crop" },
+    { name: "Neha Joshi", role: "Core Member", domain: "NLP", year: "3rd Year", skills: ["NLP", "BERT"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&h=200&fit=crop" },
+    { name: "Rohan Mehta", role: "Core Member", domain: "Deep Learning", year: "3rd Year", skills: ["Neural Networks"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&h=200&fit=crop" },
+    { name: "Sanya Kapoor", role: "Core Member", domain: "AI Research", year: "4th Year", skills: ["Research", "AI"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=200&fit=crop" },
+    { name: "Varun Reddy", role: "Core Member", domain: "Data Engineering", year: "3rd Year", skills: ["ETL", "Big Data"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?w=200&h=200&fit=crop" },
+    
+    // Executives (10)
+    { name: "Isha Gupta", role: "Executive", domain: "Business Analytics", year: "2nd Year", skills: ["Analytics", "SQL"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=200&h=200&fit=crop" },
+    { name: "Aditya Sharma", role: "Executive", domain: "ML Engineering", year: "2nd Year", skills: ["MLOps", "Python"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=200&h=200&fit=crop" },
+    { name: "Pooja Nair", role: "Executive", domain: "Data Science", year: "2nd Year", skills: ["Statistics", "ML"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=200&h=200&fit=crop" },
+    { name: "Vikram Patel", role: "Executive", domain: "Big Data", year: "2nd Year", skills: ["Spark", "Hadoop"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1504593811423-6dd665756598?w=200&h=200&fit=crop" },
+    { name: "Riya Das", role: "Executive", domain: "AI Ethics", year: "2nd Year", skills: ["Ethics", "AI"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=200&h=200&fit=crop" },
+    { name: "Siddharth Jain", role: "Executive", domain: "Python Development", year: "2nd Year", skills: ["Python", "Django"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=200&h=200&fit=crop" },
+    { name: "Meera Kulkarni", role: "Executive", domain: "Data Visualization", year: "2nd Year", skills: ["Tableau", "D3.js"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&h=200&fit=crop" },
+    { name: "Akash Rao", role: "Executive", domain: "Cloud Computing", year: "2nd Year", skills: ["AWS", "Azure"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=200&h=200&fit=crop" },
+    { name: "Tanvi Sharma", role: "Executive", domain: "Web Scraping", year: "2nd Year", skills: ["BeautifulSoup", "Selenium"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop" },
+    { name: "Dev Chawla", role: "Executive", domain: "Time Series", year: "2nd Year", skills: ["Forecasting", "ARIMA"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop" },
   ];
 
   const filteredMembers = allMembers.filter(
@@ -33,12 +47,12 @@ const Team = () => {
       member.role.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const domains = ["All", "Machine Learning", "Data Analytics", "Computer Vision", "NLP", "Deep Learning", "Leadership & ML"];
+  const domains = ["All", "Faculty", "Core Member", "Executive"];
   const [selectedDomain, setSelectedDomain] = useState("All");
 
   const domainFilteredMembers = selectedDomain === "All"
     ? filteredMembers
-    : filteredMembers.filter((member) => member.domain.includes(selectedDomain));
+    : filteredMembers.filter((member) => member.role === selectedDomain);
 
   return (
     <div className="min-h-screen pt-24 pb-20 px-4">
@@ -87,8 +101,12 @@ const Team = () => {
           {domainFilteredMembers.map((member, index) => (
             <Card key={index} className="group hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
               <CardContent className="p-6 text-center space-y-4">
-                <div className="w-20 h-20 mx-auto rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground text-2xl font-bold group-hover:scale-110 transition-transform">
-                  {member.name.split(" ").map(n => n[0]).join("")}
+                <div className="w-20 h-20 mx-auto rounded-full overflow-hidden bg-gradient-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <h3 className="font-bold group-hover:text-primary transition-colors">

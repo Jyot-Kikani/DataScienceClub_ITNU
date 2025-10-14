@@ -10,7 +10,7 @@ const About = () => {
     },
     {
       icon: Users,
-      title: "Hackathons",
+      title: "Hackathons/Contest",
       description: "Competitive events where you can apply your skills to solve real-world problems.",
     },
     {
@@ -72,7 +72,7 @@ const About = () => {
               <h2 className="text-3xl font-bold">Our Story</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Founded in 2023 by a group of passionate students at Nirma University, the Data Science Club was born from a simple idea: to democratize data science education and create a platform where students could learn, experiment, and grow together.
+                  Founded in 2024 by a group of passionate students at Nirma University, the Data Science Club was born from a simple idea: to democratize data science education and create a platform where students could learn, experiment, and grow together.
                 </p>
                 <p>
                   What started as informal study groups has now evolved into a structured community with regular workshops, competitions, and collaborative projects. We've grown from a handful of members to a vibrant community of over 100 students from diverse academic backgrounds.
