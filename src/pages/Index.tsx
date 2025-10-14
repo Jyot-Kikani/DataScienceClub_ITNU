@@ -26,7 +26,7 @@ const Index = () => {
         scale: 1.0,
         scaleMobile: 1.0,
         color: 0x739068,
-        backgroundColor: 0x0d0d0d, // darker background for smoother fade
+        backgroundColor: 0x0d0d0d, // keep original animation color
         points: 16.0,
         maxDistance: 15.0,
         spacing: 14.0,
@@ -73,15 +73,17 @@ const Index = () => {
         {/* Vanta Animation */}
         <div ref={vantaRef} className="absolute inset-0 -z-20" />
 
-        {/* Gradient Overlay (tint for text readability) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/80 -z-10" />
+        {/* Gradient Overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/80 -z-10 transition-colors duration-700" />
 
-        {/* Smooth Fade to Black Transition */}
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-black pointer-events-none z-0" />
+        {/* Smooth fade bottom overlay */}
+        <div className="absolute bottom-0 left-0 w-full h-32 
+                        bg-gradient-to-b from-transparent to-background 
+                        pointer-events-none -z-0 transition-colors duration-700" />
 
         {/* Hero Content */}
         <div className="max-w-4xl mx-auto text-center space-y-6 z-10 animate-fade-in-up">
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight text-white drop-shadow-lg">
+          <h1 className="text-5xl md:text-6xl font-bold leading-tight text-foreground drop-shadow-lg">
             Welcome to the{" "}
             <span className="block bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
               Data Science Club
@@ -106,7 +108,7 @@ const Index = () => {
       </section>
 
       {/* What is Data Science Section */}
-      <section className="py-12 px-4 bg-black text-white transition-colors duration-700">
+      <section className="py-12 px-4 bg-background text-foreground transition-colors duration-700">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-4 animate-fade-in">
@@ -156,7 +158,7 @@ const Index = () => {
                   alt="Data Science Visualization"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-background/20 flex items-end justify-center p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-background/20 flex items-end justify-center p-6 transition-colors duration-700">
                   <div className="text-center space-y-2">
                     <Brain className="h-16 w-16 mx-auto text-primary animate-glow-pulse" />
                     <p className="text-2xl font-bold">Transform Data</p>
@@ -170,7 +172,7 @@ const Index = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-16 px-4 bg-muted/30">
+      <section className="py-16 px-4 bg-muted/30 text-foreground transition-colors duration-700">
         <div className="container mx-auto">
           <div className="text-center mb-10 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-3">
@@ -192,7 +194,7 @@ const Index = () => {
       </section>
 
       {/* Latest Blogs and Events Section */}
-      <section className="py-16 px-4 bg-black text-white transition-colors duration-700">
+      <section className="py-16 px-4 bg-background text-foreground transition-colors duration-700">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-10 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-3">
