@@ -26,7 +26,7 @@ const Index = () => {
         scale: 1.0,
         scaleMobile: 1.0,
         color: 0x739068,
-        backgroundColor: 0x197379,
+        backgroundColor: 0x0d0d0d, // darker background for smoother fade
         points: 16.0,
         maxDistance: 15.0,
         spacing: 14.0,
@@ -72,8 +72,12 @@ const Index = () => {
       <section className="relative min-h-screen w-full flex items-center justify-center px-4 overflow-hidden">
         {/* Vanta Animation */}
         <div ref={vantaRef} className="absolute inset-0 -z-20" />
-        {/* Gradient Overlay */}
+
+        {/* Gradient Overlay (tint for text readability) */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/80 -z-10" />
+
+        {/* Smooth Fade to Black Transition */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-black pointer-events-none z-0" />
 
         {/* Hero Content */}
         <div className="max-w-4xl mx-auto text-center space-y-6 z-10 animate-fade-in-up">
@@ -102,7 +106,7 @@ const Index = () => {
       </section>
 
       {/* What is Data Science Section */}
-      <section className="py-12 px-4">
+      <section className="py-12 px-4 bg-black text-white transition-colors duration-700">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-4 animate-fade-in">
@@ -188,7 +192,7 @@ const Index = () => {
       </section>
 
       {/* Latest Blogs and Events Section */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-black text-white transition-colors duration-700">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-10 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-3">
