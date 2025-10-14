@@ -1,7 +1,4 @@
 
-(https://lovable.dev/projects/94d0defc-568a-4954-97ab-7919491f8338)
-
-
 git clone <YOUR_GIT_URL>
 
 
