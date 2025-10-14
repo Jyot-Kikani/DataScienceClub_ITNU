@@ -2,7 +2,6 @@ import { BenefitCard } from "@/components/BenefitCard";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Users, Brain, Code } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from './altlogo.jpg';
 
 const Index = () => {
   const benefits = [
@@ -92,7 +91,7 @@ const Index = () => {
             <div className="relative animate-fade-in-up">
               <div className="aspect-square rounded-2xl overflow-hidden border border-primary/30 relative">
                 <img 
-                  src={logo}
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=800&fit=crop" 
                   alt="Data Science Visualization" 
                   className="w-full h-full object-cover"
                 />
@@ -130,32 +129,48 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Latest Blogs Section */}
+      {/* Latest Blogs and Events Section */}
       <section className="py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Latest <span className="bg-gradient-primary bg-clip-text text-transparent">Blogs</span>
+              Stay <span className="bg-gradient-primary bg-clip-text text-transparent">Connected</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Explore tutorials, project showcases, and insights from our community
+              Explore our latest content and upcoming activities
             </p>
           </div>
           
-          <div className="animate-fade-in-up">
+          <div className="grid md:grid-cols-2 gap-6 animate-fade-in-up">
             <div className="p-8 rounded-2xl bg-gradient-primary/10 border border-primary/20 hover:shadow-glow transition-all duration-300">
               <div className="w-16 h-16 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground text-2xl font-bold mb-6">
                 📝
               </div>
               <h3 className="text-2xl font-bold mb-4">Read Our Blogs</h3>
               <p className="text-muted-foreground mb-6">
-                Dive into tutorials, project showcases, and insights from our community members on data science, AI, and machine learning. Stay updated with the latest trends and techniques.
+                Dive into tutorials, project showcases, and insights from our community members on data science, AI, and machine learning.
               </p>
               <Button variant="outline" className="group border-primary/50 hover:bg-primary/10">
                 Read Blogs
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
+
+            <Link to="/events">
+              <div className="p-8 rounded-2xl bg-gradient-primary/10 border border-primary/20 hover:shadow-glow transition-all duration-300 h-full">
+                <div className="w-16 h-16 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground text-2xl font-bold mb-6">
+                  🎯
+                </div>
+                <h3 className="text-2xl font-bold mb-4">View Events</h3>
+                <p className="text-muted-foreground mb-6">
+                  Check out our upcoming workshops, hackathons, and tech talks. Join us to learn and grow together.
+                </p>
+                <Button variant="outline" className="group border-primary/50 hover:bg-primary/10">
+                  Explore Events
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            </Link>
           </div>
         </div>
       </section>

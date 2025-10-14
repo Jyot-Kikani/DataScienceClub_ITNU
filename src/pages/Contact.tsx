@@ -1,25 +1,26 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Linkedin, Instagram, Github } from "lucide-react";
+import { Mail, Linkedin, MessageCircle } from "lucide-react";
 
 const Contact = () => {
   const contacts = [
     {
       title: "Club Email",
-      email: "contact@nirmaDS.edu",
+      icon: Mail,
+      link: "mailto:contact@nirmaDS.edu",
       description: "For general inquiries and club information",
     },
     {
-      title: "President",
-      name: "Arjun Patel",
-      email: "arjun.patel@nirma.edu",
-      description: "For leadership and collaboration inquiries",
+      title: "LinkedIn",
+      icon: Linkedin,
+      link: "https://www.linkedin.com/in/your-linkedin-profile",
+      description: "Connect with us on LinkedIn",
     },
-  ];
-
-  const socialLinks = [
-    { name: "LinkedIn", icon: Linkedin, link: "#", color: "hover:text-blue-600" },
-    { name: "Instagram", icon: Instagram, link: "#", color: "hover:text-pink-600" },
-    { name: "GitHub", icon: Github, link: "#", color: "hover:text-purple-600" },
+    {
+      title: "WhatsApp Group",
+      icon: MessageCircle,
+      link: "https://chat.whatsapp.com/your-group-link",
+      description: "Join our WhatsApp group for updates",
+    },
   ];
 
   return (
@@ -38,49 +39,31 @@ const Contact = () => {
         {/* Contact Cards */}
         <div className="space-y-6 mb-16 animate-fade-in-up">
           {contacts.map((contact, index) => (
-            <Card key={index} className="group hover:shadow-glow transition-all duration-300">
-              <CardContent className="p-8">
-                <div className="flex flex-col md:flex-row md:items-center gap-6">
-                  <div className="w-16 h-16 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Mail className="h-8 w-8" />
+            <a
+              key={index}
+              href={contact.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <Card className="group hover:shadow-glow transition-all duration-300 cursor-pointer">
+                <CardContent className="p-8">
+                  <div className="flex flex-col md:flex-row md:items-center gap-6">
+                    <div className="w-16 h-16 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <contact.icon className="h-8 w-8" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold mb-2">{contact.title}</h3>
+                      <p className="text-muted-foreground mb-3">{contact.description}</p>
+                      <span className="text-lg font-medium text-primary hover:underline">
+                        {contact.link}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold mb-2">{contact.title}</h3>
-                    {contact.name && (
-                      <p className="text-lg text-primary font-medium mb-2">{contact.name}</p>
-                    )}
-                    <p className="text-muted-foreground mb-3">{contact.description}</p>
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="text-lg font-medium text-primary hover:underline"
-                    >
-                      {contact.email}
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </a>
           ))}
-        </div>
-
-        {/* Social Media */}
-        <div className="text-center animate-fade-in">
-          <h2 className="text-3xl font-bold mb-6">Follow Us</h2>
-          <p className="text-muted-foreground mb-8">
-            Stay connected on social media for updates and community highlights
-          </p>
-          <div className="flex justify-center gap-6">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.link}
-                className={`w-16 h-16 rounded-full bg-muted flex items-center justify-center transition-all hover:scale-110 ${social.color}`}
-                aria-label={social.name}
-              >
-                <social.icon className="h-8 w-8" />
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </div>

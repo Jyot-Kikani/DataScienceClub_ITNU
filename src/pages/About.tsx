@@ -40,9 +40,9 @@ const About = () => {
 
         {/* Vision & Mission */}
         <div className="grid md:grid-cols-2 gap-8 mb-16 animate-fade-in-up">
-          <Card className="border-primary/20">
+          <Card className="border-primary/20 group hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
             <CardContent className="p-8 space-y-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground">
+              <div className="w-12 h-12 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground group-hover:scale-110 transition-transform">
                 <Target className="h-6 w-6" />
               </div>
               <h2 className="text-2xl font-bold">Our Vision</h2>
@@ -52,9 +52,9 @@ const About = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-secondary/20">
+          <Card className="border-primary/20 group hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
             <CardContent className="p-8 space-y-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground">
+              <div className="w-12 h-12 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground group-hover:scale-110 transition-transform">
                 <Heart className="h-6 w-6" />
               </div>
               <h2 className="text-2xl font-bold">Our Mission</h2>
@@ -67,7 +67,7 @@ const About = () => {
 
         {/* Our Story */}
         <div className="mb-16 animate-fade-in">
-          <Card>
+          <Card className="group hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
             <CardContent className="p-8 space-y-6">
               <h2 className="text-3xl font-bold">Our Story</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">

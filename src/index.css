@@ -22,82 +22,82 @@
   }
 }
 
-
-
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 210 50% 95%;         /* soft light blue */
+    --background: 180 40% 98%;         /* mid greenish-blue - easier on eyes */
     --foreground: 220 15% 25%;         /* darkish gray-blue for text */
 
-    --card: 210 50% 90%;                /* soft card bg */
+    --card: 180 50% 93%;                /* soft card bg */
     --card-foreground: 220 15% 25%;     /* text on card */
 
-    --popover: 210 50% 90%;             /* popover background */
+    --popover: 180 50% 93%;             /* popover background */
     --popover-foreground: 220 15% 25%;  /* text on popover */
 
-    --primary: 210 70% 60%;             /* primary accent blue */
-    --primary-foreground: 0 0% 100%;    /* text on primary elements */
+    --primary: 168 76% 55%;             /* teal-green */
+    --primary-foreground: 210 40% 98%;  /* light text */
+    --primary-glow: 168 76% 65%;
 
-    --secondary: 200 60% 65%;           /* secondary soft cyan */
+    --secondary: 200 80% 70%;           /* bright cyan-blue */
     --secondary-foreground: 0 0% 100%;  /* text on secondary elements */
 
-    --muted: 210 50% 80%;               /* muted light blue */
+    --muted: 180 50% 85%;               /* muted light blue */
     --muted-foreground: 220 15% 45%;    /* muted text */
 
-    --accent: 200 60% 65%;              /* accent cyan */
+    --accent: 280 70% 75%;              /* light purple */
     --accent-foreground: 0 0% 100%;     /* text on accent elements */
 
     --destructive: 0 84% 60%;           /* red for destructive actions */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 50% 75%;              /* soft gray-blue borders */
-    --input: 210 50% 80%;               /* input background */
-    --ring: 210 70% 60%;                /* focus ring */
+    --border: 180 50% 80%;              /* soft borders */
+    --input: 180 50% 90%;               /* input background */
+    --ring: 168 76% 55%;                /* focus ring */
 
     --radius: 0.75rem;
 
-    --gradient-primary: linear-gradient(135deg, hsl(210 70% 60%) 0%, hsl(200 60% 65%) 100%);
-    --gradient-secondary: linear-gradient(180deg, hsl(210 80% 95%) 0%, hsl(210 50% 95%) 100%);
-    --glow-primary: 0 0 40px hsl(210 70% 60% / 0.3);
+    --gradient-primary: linear-gradient(135deg, hsl(168, 76%, 55%), hsl(280, 70%, 75%));
+    --gradient-secondary: linear-gradient(135deg, hsl(168, 76%, 55%) 0%, hsl(200, 85%, 65%) 50%, hsl(280, 70%, 75%) 100%);
+    --glow-primary: 0 0 40px hsl(168 76% 55% / 0.3);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 220 25% 8%;
-    --foreground: 220 15% 95%;
-
-    --card: 220 20% 12%;
-    --card-foreground: 220 15% 95%;
-
-    --popover: 220 20% 12%;
-    --popover-foreground: 220 15% 95%;
-
-    --primary: 240 80% 65%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 270 70% 70%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 220 20% 18%;
-    --muted-foreground: 220 10% 60%;
-
-    --accent: 250 75% 67%;
-    --accent-foreground: 0 0% 100%;
+    --background: 0 0% 0%;              /* complete black */
+    --foreground: 210 40% 98%;
+    
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 150 70% 50%;             /* vibrant green */
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 150 70% 60%;
+    
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 240 80% 65%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 150 70% 50%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(240 80% 65%) 0%, hsl(270 70% 70%) 100%);
-    --gradient-secondary: linear-gradient(180deg, hsl(220 20% 15%) 0%, hsl(220 25% 8%) 100%);
-    --glow-primary: 0 0 50px hsl(240 80% 65% / 0.4);
+    --gradient-primary: linear-gradient(135deg, hsl(150, 70%, 50%), hsl(220, 80%, 60%), hsl(280, 75%, 60%));
+    --gradient-secondary: linear-gradient(135deg, hsl(150, 70%, 50%) 0%, hsl(220, 80%, 60%) 50%, hsl(280, 75%, 60%) 100%);
+    --glow-primary: 0 0 50px hsl(150 70% 50% / 0.4);
   }
 }
 
@@ -108,5 +108,18 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Additional background styling for dark mode with gradient effects */
+  .dark body {
+    background: 
+      radial-gradient(ellipse at top, hsl(220 80% 20% / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, hsl(280 75% 20% / 0.1) 0%, transparent 50%),
+      hsl(0 0% 0%);
+  }
+
+  /* Additional background styling for light mode */
+  .light body {
+    background: hsl(180 40% 98%);
   }
 }
