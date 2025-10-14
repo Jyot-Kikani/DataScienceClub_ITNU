@@ -2,8 +2,6 @@
 
 Welcome to the official repository of the **Data Science Club** at Nirma University. Our mission is to empower students to explore the world of **data science, artificial intelligence, and machine learning** through hands-on learning, collaboration, and innovation.
 
-![Data Science Club Logo](./Logo.jpg)
-
 ## 🚀 About Us
 
 Founded in 2024, the Data Science Club is a student-driven organization dedicated to fostering a community of aspiring data scientists. We aim to bridge the gap between theoretical knowledge and practical application by providing opportunities for **workshops, hackathons, research projects, and community events**.
