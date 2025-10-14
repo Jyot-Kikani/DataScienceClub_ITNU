@@ -26,3 +26,16 @@ To run this project locally, follow these steps:
    ```bash
    git clone https://github.com/Jyot-Kikani/DataScienceClub_ITNU.git
    cd DataScienceClub_ITNU
+   ```
+Install dependencies:
+```
+npm install
+npm run dev
+```
+
+Open your browser and navigate to http://localhost:3000
+
+📄 License
+This project is licensed under the MIT License - see the LICENSE
+ file for details.
+
