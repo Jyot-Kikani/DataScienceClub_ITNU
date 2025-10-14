@@ -1,8 +1,14 @@
 import type { Config } from "tailwindcss";
+import animatePlugin from "tailwindcss-animate";
 
-export default {
+const config: Config = {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}"
+  ],
   prefix: "",
   theme: {
     container: {
@@ -102,9 +108,11 @@ export default {
         "gradient-secondary": "var(--gradient-secondary)",
       },
       boxShadow: {
-        "glow": "var(--glow-primary)",
+        glow: "var(--glow-primary)",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+  plugins: [animatePlugin],
+};
+
+export default config;
