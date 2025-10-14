@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-const PARTICLE_COUNT = 8;
-
 type Particle = {
   x: number;
   y: number;
@@ -21,7 +19,6 @@ export const AnimatedCursor = () => {
       const newPos = { x: e.clientX, y: e.clientY };
       setPosition(newPos);
 
-      // Add new particles
       const newParticles: Particle[] = Array.from({ length: 2 }).map(() => ({
         x: newPos.x + (Math.random() - 0.5) * 10,
         y: newPos.y + (Math.random() - 0.5) * 10,
@@ -31,7 +28,7 @@ export const AnimatedCursor = () => {
       }));
 
       setParticles((prev) => [...prev, ...newParticles]);
-      
+
       const target = e.target as HTMLElement;
       const isInteractive = target.closest('a, button, input, textarea, [role="button"]');
       setIsHovering(!!isInteractive);
@@ -51,7 +48,6 @@ export const AnimatedCursor = () => {
     };
   }, []);
 
-  // Animate particles
   useEffect(() => {
     const interval = setInterval(() => {
       setParticles((prev) =>
@@ -59,12 +55,13 @@ export const AnimatedCursor = () => {
           .map((p) => ({ ...p, y: p.y + p.velocityY, opacity: p.opacity - 0.02 }))
           .filter((p) => p.opacity > 0)
       );
-    }, 16); // roughly 60fps
+    }, 16);
 
     return () => clearInterval(interval);
   }, []);
 
-  const gradient = "linear-gradient(135deg, #00ffae, #00c8ff)"; // green → blue gradient
+  const gradientGlow = "linear-gradient(135deg, #00ffae, #00c8ff)";
+  const darkBg = "#111";
 
   return (
     <>
@@ -81,8 +78,8 @@ export const AnimatedCursor = () => {
             opacity: p.opacity,
             transform: "translate(-50%, -50%)",
             pointerEvents: "none",
-            background: gradient,
-            boxShadow: `0 0 8px rgba(0,255,174,0.7), 0 0 8px rgba(0,200,255,0.7)`,
+            background: darkBg,
+            boxShadow: `0 0 6px rgba(0,255,174,0.8), 0 0 8px rgba(0,200,255,0.7)`,
           }}
         />
       ))}
@@ -97,19 +94,17 @@ export const AnimatedCursor = () => {
         }}
       >
         <div
-          className={`rounded-full transition-all duration-150 ${
-            isClicking
-              ? "animate-ping"
-              : isHovering
-              ? "animate-pulse"
-              : ""
-          }`}
+          className="rounded-full transition-all duration-150"
           style={{
-            width: isClicking ? "24px" : isHovering ? "56px" : "40px",
-            height: isClicking ? "24px" : isHovering ? "56px" : "40px",
-            background: gradient,
-            border: isHovering ? "2px solid rgba(0,255,174,0.7)" : "2px solid rgba(0,255,174,0.4)",
-            boxShadow: "0 0 20px rgba(0,255,174,0.6), 0 0 20px rgba(0,200,255,0.5)",
+            width: isClicking ? "28px" : isHovering ? "40px" : "36px", // shrink slightly on click
+            height: isClicking ? "28px" : isHovering ? "40px" : "36px",
+            background: darkBg,
+            border: `2px solid rgba(0,255,174,${isHovering ? "0.8" : "0.5"})`,
+            boxShadow: `
+              0 0 ${isClicking ? "12px" : "15px"} rgba(0,255,174,0.7), 
+              0 0 ${isClicking ? "18px" : "25px"} rgba(0,200,255,0.6),
+              inset 0 0 10px rgba(0,255,174,0.4)
+            `,
           }}
         />
       </div>
