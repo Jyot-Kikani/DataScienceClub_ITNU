@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Instagram, Mail } from "lucide-react";
+import logo from './Logo.jpg';
 
 export const Footer = () => {
   const socialLinks = [
@@ -15,9 +16,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-xl">
-                DS
-              </div>
+              {/* Logo Image */}
+              <img
+                src={logo}
+                alt="Data Science Club Logo"
+                className="w-10 h-10 rounded-lg object-cover"
+              />
               <span className="font-bold text-lg">Data Science Club</span>
             </div>
             <p className="text-sm text-muted-foreground">
