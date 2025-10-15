@@ -1,7 +1,15 @@
 import { useEffect, useRef } from "react";
 import { BenefitCard } from "@/components/BenefitCard";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, TrendingUp, Users, Brain, Code } from "lucide-react";
+import {
+  ArrowRight,
+  TrendingUp,
+  Users,
+  Brain,
+  Code,
+  BookOpen,
+  CalendarDays,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -18,19 +26,19 @@ const Index = () => {
       vantaEffect = VANTA.default({
         el: vantaRef.current,
         THREE,
-        mouseControls: true,
-        touchControls: false,
+        mouseControls: true, // interactive
+        touchControls: true,
         gyroControls: false,
-        minHeight: 200.0,
-        minWidth: 200.0,
+        minHeight: 600.0,
+        minWidth: 600.0,
         scale: 1.0,
         scaleMobile: 1.0,
         color: 0x739068,
-        backgroundColor: 0x0d0d0d, // keep original animation color
-        points: 16.0,
-        maxDistance: 15.0,
-        spacing: 14.0,
-        showDots: false,
+        backgroundColor: 0x0d0d0d,
+        points: 20.0,
+        maxDistance: 18.0,
+        spacing: 15.0,
+        showDots: true,
       });
     })();
 
@@ -70,18 +78,10 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen w-full flex items-center justify-center px-4 overflow-hidden">
-        {/* Vanta Animation */}
         <div ref={vantaRef} className="absolute inset-0 -z-20" />
-
-        {/* Gradient Overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/80 -z-10 transition-colors duration-700" />
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-background pointer-events-none -z-0 transition-colors duration-700" />
 
-        {/* Smooth fade bottom overlay */}
-        <div className="absolute bottom-0 left-0 w-full h-32 
-                        bg-gradient-to-b from-transparent to-background 
-                        pointer-events-none -z-0 transition-colors duration-700" />
-
-        {/* Hero Content */}
         <div className="max-w-4xl mx-auto text-center space-y-6 z-10 animate-fade-in-up">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight text-foreground drop-shadow-lg">
             Welcome to the{" "}
@@ -111,6 +111,7 @@ const Index = () => {
       <section className="py-12 px-4 bg-background text-foreground transition-colors duration-700">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Text Content */}
             <div className="space-y-4 animate-fade-in">
               <h2 className="text-4xl md:text-5xl font-bold">
                 What is
@@ -151,106 +152,190 @@ const Index = () => {
                 ))}
               </div>
             </div>
-            <div className="relative animate-fade-in-up">
-              <div className="aspect-square rounded-2xl overflow-hidden border border-primary/30 relative">
-                <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=800&fit=crop"
-                  alt="Data Science Visualization"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-background/20 flex items-end justify-center p-6 transition-colors duration-700">
-                  <div className="text-center space-y-2">
-                    <Brain className="h-16 w-16 mx-auto text-primary animate-glow-pulse" />
-                    <p className="text-2xl font-bold">Transform Data</p>
-                    <p className="text-muted-foreground">into Intelligence</p>
-                  </div>
-                </div>
-              </div>
+
+            {/* Non-interactive Flowing Network */}
+            <div className="relative w-full h-96 md:h-[28rem] flex items-center justify-center">
+              <NonInteractiveNetwork />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-16 px-4 bg-muted/30 text-foreground transition-colors duration-700">
+
+     {/* Benefits Section */}
+      <section className="py-16 px-4 bg-background text-foreground transition-colors duration-700">
         <div className="container mx-auto">
           <div className="text-center mb-10 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-3">
               Why Learn Data Science?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover the advantages of mastering data science and how it can
-              transform your future
+              Discover the advantages of mastering data science and how it can transform your future
             </p>
           </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in-up">
             {benefits.map((benefit, index) => (
-              <div key={index} style={{ animationDelay: `${index * 100}ms` }}>
-                <BenefitCard {...benefit} />
+              <div
+                key={index}
+                style={{ animationDelay: `${index * 100}ms` }}
+                className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+              >
+                {/* Card content */}
+                <div className="p-6 flex flex-col items-center text-center space-y-4 relative z-10 bg-transparent">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-green-900/10 text-green-500 group-hover:bg-green-900/20 transition-colors">
+                    <benefit.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-semibold">{benefit.title}</h3>
+                  <p className="text-muted-foreground">{benefit.description}</p>
+                </div>
+
+                {/* Subtle green hover overlay */}
+                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Latest Blogs and Events Section */}
-      <section className="py-16 px-4 bg-background text-foreground transition-colors duration-700">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-10 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-3">
-              Stay{" "}
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
-                Connected
-              </span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore our latest content and upcoming activities
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-6 animate-fade-in-up">
-            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-primary/10 border border-primary/20 hover:shadow-glow transition-all duration-300">
-              <div className="w-16 h-16 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground text-2xl font-bold mb-4 sm:mb-6">
-                📝
-              </div>
-              <h3 className="text-2xl font-bold mb-3 sm:mb-4">Read Our Blogs</h3>
-              <p className="text-muted-foreground mb-4 sm:mb-6">
-                Dive into tutorials, project showcases, and insights from our
-                community members on data science, AI, and machine learning.
+    {/* Latest Blogs and Events Section */}
+        <section className="py-16 px-4 bg-background text-foreground transition-colors duration-700">
+          <div className="container mx-auto max-w-6xl">
+            <div className="text-center mb-10 animate-fade-in">
+              <h2 className="text-4xl md:text-5xl font-bold mb-3">
+                Stay{" "}
+                <span className="bg-gradient-primary bg-clip-text text-transparent">
+                  Connected
+                </span>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Explore our latest content and upcoming activities
               </p>
-              <Button
-                variant="outline"
-                className="group border-primary/50 hover:bg-primary/10"
-              >
-                Read Blogs
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
             </div>
 
-            <Link to="/events">
-              <div className="p-6 sm:p-8 rounded-2xl bg-gradient-primary/10 border border-primary/20 hover:shadow-glow transition-all duration-300 h-full">
-                <div className="w-16 h-16 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground text-2xl font-bold mb-4 sm:mb-6">
-                  🎯
+            <div className="grid md:grid-cols-2 gap-6 animate-fade-in-up">
+              {/* Read Our Blogs Card */}
+              <div className="relative group overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow bg-black p-6 sm:p-8">
+                <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-green-900/10 text-green-500 group-hover:bg-green-900/20 mb-4 sm:mb-6">
+                  <BookOpen className="h-8 w-8" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 sm:mb-4">View Events</h3>
+                <h3 className="text-2xl font-bold mb-3 sm:mb-4">Read Our Blogs</h3>
                 <p className="text-muted-foreground mb-4 sm:mb-6">
-                  Check out our upcoming workshops, hackathons, and tech talks.
-                  Join us to learn and grow together.
+                  Dive into tutorials, project showcases, and insights from our
+                  community members on data science, AI, and machine learning.
                 </p>
                 <Button
                   variant="outline"
                   className="group border-primary/50 hover:bg-primary/10"
                 >
-                  Explore Events
+                  Read Blogs
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
+                {/* Subtle green hover overlay */}
+                <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               </div>
-            </Link>
+
+              {/* View Events Card */}
+              <Link to="/events" className="relative group">
+                <div className="overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow bg-black p-6 sm:p-8 h-full">
+                  <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-green-900/10 text-green-500 group-hover:bg-green-900/20 mb-4 sm:mb-6">
+                    <CalendarDays className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 sm:mb-4">View Events</h3>
+                  <p className="text-muted-foreground mb-4 sm:mb-6">
+                    Check out our upcoming workshops, hackathons, and tech talks.
+                    Join us to learn and grow together.
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="group border-primary/50 hover:bg-primary/10"
+                  >
+                    Explore Events
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  {/* Subtle green hover overlay */}
+                  <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
     </div>
   );
 };
 
 export default Index;
+
+// ---------------- Non-interactive Flowing Network ----------------
+function NonInteractiveNetwork() {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = canvas.offsetWidth);
+    let height = (canvas.height = canvas.offsetHeight);
+
+    const nodes = Array.from({ length: 30 }, (_, i) => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+    }));
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw lines
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j];
+          const dist = Math.hypot(a.x - b.x, a.y - b.y);
+          if (dist < 120) {
+            ctx.strokeStyle = `hsla(168, 76%, 55%, ${1 - dist / 120})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes
+      nodes.forEach((node) => {
+        node.x += node.vx;
+        node.y += node.vy;
+
+        if (node.x < 0 || node.x > width) node.vx *= -1;
+        if (node.y < 0 || node.y > height) node.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = "hsl(168, 76%, 55%)";
+        ctx.shadowColor = "hsl(168, 76%, 55%)";
+        ctx.shadowBlur = 10;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    const handleResize = () => {
+      width = canvas.width = canvas.offsetWidth;
+      height = canvas.height = canvas.offsetHeight;
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full rounded-full" />;
+}

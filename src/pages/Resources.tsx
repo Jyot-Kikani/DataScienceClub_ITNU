@@ -55,6 +55,13 @@ const Resources = () => {
     },
   ];
 
+  const videos = [
+    { title: "Introduction to Machine Learning", channel: "Data Science Club", duration: "45:32" },
+    { title: "Python for Data Science - Complete Tutorial", channel: "Tech Academy", duration: "2:15:20" },
+    { title: "Deep Learning Fundamentals", channel: "AI Learning", duration: "1:30:15" },
+    { title: "Data Visualization with Python", channel: "Code Masters", duration: "55:40" },
+  ];
+
   return (
     <div className="min-h-screen pt-24 pb-20 px-4">
       <div className="container mx-auto max-w-6xl">
@@ -73,21 +80,25 @@ const Resources = () => {
           <h2 className="text-3xl font-bold mb-8 animate-fade-in">Learning Paths</h2>
           <div className="grid md:grid-cols-3 gap-6 animate-fade-in-up">
             {learningPaths.map((path, index) => (
-              <Card key={index} className="hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
-                <CardHeader>
+              <Card
+                key={index}
+                className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+              >
+                <CardHeader className="relative z-10">
                   <Badge className={path.color}>{path.level}</Badge>
                   <CardTitle className="mt-4">{path.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="relative z-10">
                   <div className="space-y-2">
                     {path.skills.map((skill) => (
                       <div key={skill} className="flex items-center gap-2 text-sm">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
                         <span className="text-muted-foreground">{skill}</span>
                       </div>
                     ))}
                   </div>
                 </CardContent>
+                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               </Card>
             ))}
           </div>
@@ -98,9 +109,12 @@ const Resources = () => {
           <h2 className="text-3xl font-bold mb-8 animate-fade-in">Essential Tools & Libraries</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 animate-fade-in-up">
             {tools.map((tool, index) => (
-              <Card key={index} className="group hover:shadow-glow transition-all duration-300 hover:-translate-y-1 text-center">
-                <CardContent className="p-6 space-y-3">
-                  <div className="w-12 h-12 mx-auto rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground group-hover:scale-110 transition-transform">
+              <Card
+                key={index}
+                className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow text-center"
+              >
+                <CardContent className="p-6 space-y-3 relative z-10">
+                  <div className="w-12 h-12 mx-auto rounded-lg bg-green-900/10 flex items-center justify-center text-green-500 group-hover:text-green-400 group-hover:scale-110 transition-transform">
                     <tool.icon className="h-6 w-6" />
                   </div>
                   <div>
@@ -108,6 +122,7 @@ const Resources = () => {
                     <p className="text-xs text-muted-foreground">{tool.category}</p>
                   </div>
                 </CardContent>
+                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               </Card>
             ))}
           </div>
@@ -118,11 +133,14 @@ const Resources = () => {
           <h2 className="text-3xl font-bold mb-8">Recommended Courses</h2>
           <div className="space-y-4">
             {courses.map((course, index) => (
-              <Card key={index} className="group hover:shadow-glow transition-all duration-300">
-                <CardContent className="p-6">
+              <Card
+                key={index}
+                className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+              >
+                <CardContent className="p-6 relative z-10">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="text-xl font-semibold mb-2 group-hover:text-green-400 transition-colors">
                         {course.title}
                       </h3>
                       <div className="flex gap-3">
@@ -138,42 +156,48 @@ const Resources = () => {
                     </Button>
                   </div>
                 </CardContent>
+                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               </Card>
             ))}
           </div>
         </div>
 
-        {/* YouTube Videos */}
-        <div className="animate-fade-in-up">
-          <h2 className="text-3xl font-bold mb-8">Featured YouTube Videos</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              { title: "Introduction to Machine Learning", channel: "Data Science Club", duration: "45:32" },
-              { title: "Python for Data Science - Complete Tutorial", channel: "Tech Academy", duration: "2:15:20" },
-              { title: "Deep Learning Fundamentals", channel: "AI Learning", duration: "1:30:15" },
-              { title: "Data Visualization with Python", channel: "Code Masters", duration: "55:40" },
-            ].map((video, index) => (
-              <Card key={index} className="group hover:shadow-glow transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex gap-4">
-                    <div className="w-24 h-24 flex-shrink-0 rounded-lg bg-gradient-primary/20 flex items-center justify-center group-hover:scale-105 transition-transform">
-                      <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground">
-                        ▶
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
-                        {video.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-2">{video.channel}</p>
-                      <Badge variant="outline" className="text-xs">{video.duration}</Badge>
-                    </div>
+       {/* YouTube Videos */}
+      <div className="animate-fade-in-up">
+        <h2 className="text-3xl font-bold mb-8">Featured YouTube Videos</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            { title: "Introduction to Machine Learning", channel: "Data Science Club", duration: "45:32" },
+            { title: "Python for Data Science - Complete Tutorial", channel: "Tech Academy", duration: "2:15:20" },
+            { title: "Deep Learning Fundamentals", channel: "AI Learning", duration: "1:30:15" },
+            { title: "Data Visualization with Python", channel: "Code Masters", duration: "55:40" },
+          ].map((video, index) => (
+            <Card
+              key={index}
+              className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+            >
+              <CardContent className="p-6 flex gap-4 relative z-10">
+                <div className="w-24 h-24 flex-shrink-0 rounded-lg bg-gradient-primary/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground">
+                    ▶
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                    {video.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-2">{video.channel}</p>
+                  <Badge variant="outline" className="text-xs">{video.duration}</Badge>
+                </div>
+              </CardContent>
+
+              {/* Subtle green hover overlay */}
+              <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+            </Card>
+          ))}
         </div>
+      </div>
+
       </div>
     </div>
   );

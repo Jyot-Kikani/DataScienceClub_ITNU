@@ -13,7 +13,7 @@ const Team = () => {
     { name: "Dr. Anjali Mehta", role: "Faculty", domain: "Data Analytics", year: "Faculty Mentor", skills: ["Analytics", "Statistics", "Research"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" },
     { name: "Dr. Vikram Singh", role: "Faculty", domain: "Deep Learning", year: "Faculty Guide", skills: ["Deep Learning", "Neural Networks"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop" },
     { name: "Dr. Sneha Patel", role: "Faculty", domain: "NLP Research", year: "Faculty Advisor", skills: ["NLP", "Research", "AI Ethics"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" },
-    
+
     // Core Members (11)
     { name: "Arjun Patel", role: "Core Member", domain: "Leadership & ML", year: "4th Year", skills: ["Leadership", "ML", "Python"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" },
     { name: "Priya Shah", role: "Core Member", domain: "Events & Analytics", year: "3rd Year", skills: ["Organization", "Data Analytics", "R"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop" },
@@ -26,7 +26,7 @@ const Team = () => {
     { name: "Rohan Mehta", role: "Core Member", domain: "Deep Learning", year: "3rd Year", skills: ["Neural Networks"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&h=200&fit=crop" },
     { name: "Sanya Kapoor", role: "Core Member", domain: "AI Research", year: "4th Year", skills: ["Research", "AI"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=200&fit=crop" },
     { name: "Varun Reddy", role: "Core Member", domain: "Data Engineering", year: "3rd Year", skills: ["ETL", "Big Data"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?w=200&h=200&fit=crop" },
-    
+
     // Executives (10)
     { name: "Isha Gupta", role: "Executive", domain: "Business Analytics", year: "2nd Year", skills: ["Analytics", "SQL"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=200&h=200&fit=crop" },
     { name: "Aditya Sharma", role: "Executive", domain: "ML Engineering", year: "2nd Year", skills: ["MLOps", "Python"], linkedin: "#", github: "#", image: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=200&h=200&fit=crop" },
@@ -55,7 +55,7 @@ const Team = () => {
     : filteredMembers.filter((member) => member.role === selectedDomain);
 
   return (
-    <div className="min-h-screen pt-24 pb-20 px-4">
+    <div className="min-h-screen pt-24 pb-20 px-4 bg-background text-foreground transition-colors duration-700">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
@@ -87,7 +87,7 @@ const Team = () => {
               onClick={() => setSelectedDomain(domain)}
               className={`cursor-pointer transition-all ${
                 selectedDomain === domain
-                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  ? "bg-green-600 text-green-50 hover:bg-green-700"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
@@ -99,9 +99,15 @@ const Team = () => {
         {/* Members Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in-up">
           {domainFilteredMembers.map((member, index) => (
-            <Card key={index} className="group hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
-              <CardContent className="p-6 text-center space-y-4">
-                <div className="w-20 h-20 mx-auto rounded-full overflow-hidden bg-gradient-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <Card
+              key={index}
+              className="group relative overflow-hidden rounded-xl bg-black transition-all duration-300 hover:-translate-y-1 hover:shadow-glow cursor-pointer"
+            >
+              {/* Light green hover overlay */}
+              <div className="absolute inset-0 pointer-events-none rounded-xl bg-gradient-to-t from-green-900 to-green-700 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+
+              <CardContent className="p-6 text-center space-y-4 relative z-10">
+                <div className="w-20 h-20 mx-auto rounded-full overflow-hidden bg-green-900/10 group-hover:bg-green-900/20 flex items-center justify-center transition-transform group-hover:scale-110">
                   <img 
                     src={member.image} 
                     alt={member.name}
@@ -109,13 +115,13 @@ const Team = () => {
                   />
                 </div>
                 <div>
-                  <h3 className="font-bold group-hover:text-primary transition-colors">
+                  <h3 className="font-bold text-white group-hover:text-green-400 transition-colors">
                     {member.name}
                   </h3>
-                  <p className="text-sm text-primary font-medium">{member.role}</p>
+                  <p className="text-sm text-green-400 font-medium">{member.role}</p>
                   <p className="text-xs text-muted-foreground">{member.year}</p>
                 </div>
-                <Badge className="text-xs bg-primary/10 text-primary border-primary/20">
+                <Badge className="text-xs bg-green-900/10 text-green-400 border-green-700">
                   {member.domain}
                 </Badge>
                 <div className="flex flex-wrap gap-1 justify-center">
@@ -125,17 +131,17 @@ const Team = () => {
                     </span>
                   ))}
                 </div>
-                <div className="flex justify-center gap-3 pt-2 border-t">
+                <div className="flex justify-center gap-3 pt-2 border-t border-muted">
                   <a
                     href={member.linkedin}
-                    className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all"
+                    className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:bg-green-900/20 hover:text-green-400 transition-all"
                     aria-label="LinkedIn"
                   >
                     <Linkedin className="h-4 w-4" />
                   </a>
                   <a
                     href={member.github}
-                    className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all"
+                    className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:bg-green-900/20 hover:text-green-400 transition-all"
                     aria-label="GitHub"
                   >
                     <Github className="h-4 w-4" />
