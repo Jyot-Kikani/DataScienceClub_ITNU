@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import { BenefitCard } from "@/components/BenefitCard";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   ArrowRight,
   TrendingUp,
@@ -8,7 +8,7 @@ import {
   Brain,
   Code,
   BookOpen,
-  CalendarDays,
+  FolderOpen,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -26,7 +26,7 @@ const Index = () => {
       vantaEffect = VANTA.default({
         el: vantaRef.current,
         THREE,
-        mouseControls: true, // interactive
+        mouseControls: true,
         touchControls: true,
         gyroControls: false,
         minHeight: 600.0,
@@ -108,61 +108,35 @@ const Index = () => {
       </section>
 
       {/* What is Data Science Section */}
-      <section className="py-12 px-4 bg-background text-foreground transition-colors duration-700">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Text Content */}
-            <div className="space-y-4 animate-fade-in">
-              <h2 className="text-4xl md:text-5xl font-bold">
-                What is
-                <span className="block text-primary"> Data Science?</span>
-              </h2>
-              <div className="space-y-3 text-base text-muted-foreground">
-                <p>
-                  Data Science is the art and science of extracting meaningful
-                  insights from data. It combines statistics, programming, and
-                  domain expertise to solve complex problems.
-                </p>
-                <p>
-                  In today's digital age, data is everywhere. From predicting
-                  customer behavior to diagnosing diseases, data science is
-                  revolutionizing every industry.
-                </p>
-                <p>
-                  By learning data science, you'll gain the power to turn raw
-                  data into actionable intelligence, making you invaluable in the
-                  modern workforce.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2 pt-3">
-                {[
-                  "Machine Learning",
-                  "AI",
-                  "Analytics",
-                  "Big Data",
-                  "Python",
-                  "Statistics",
-                ].map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Non-interactive Flowing Network */}
-            <div className="relative w-full h-96 md:h-[28rem] flex items-center justify-center">
-              <NonInteractiveNetwork />
-            </div>
+      <section className="py-20 px-4 bg-background text-foreground transition-colors duration-700 flex items-center justify-center">
+        <div className="text-center max-w-3xl space-y-6 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold">
+            What is
+            <span className="block text-primary"> Data Science?</span>
+          </h2>
+          <p className="text-base md:text-lg text-muted-foreground">
+            Data Science is the art and science of extracting meaningful insights from data. 
+            It combines statistics, programming, and domain expertise to solve complex problems. 
+            From predicting customer behavior to diagnosing diseases, data science is 
+            transforming every industry. Mastering it gives you the power to turn raw data 
+            into actionable intelligence — making you invaluable in the modern workforce.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2 pt-3">
+            {["Machine Learning", "AI", "Analytics", "Big Data", "Python", "Statistics"].map(
+              (tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20"
+                >
+                  {tech}
+                </span>
+              )
+            )}
           </div>
         </div>
       </section>
 
-
-     {/* Benefits Section */}
+      {/* Benefits Section */}
       <section className="py-16 px-4 bg-background text-foreground transition-colors duration-700">
         <div className="container mx-auto">
           <div className="text-center mb-10 animate-fade-in">
@@ -176,47 +150,44 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in-up">
             {benefits.map((benefit, index) => (
-              <div
+              <Card
                 key={index}
-                style={{ animationDelay: `${index * 100}ms` }}
                 className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                {/* Card content */}
-                <div className="p-6 flex flex-col items-center text-center space-y-4 relative z-10 bg-transparent">
+                <CardContent className="p-6 flex flex-col items-center text-center space-y-4 relative z-10">
                   <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-green-900/10 text-green-500 group-hover:bg-green-900/20 transition-colors">
                     <benefit.icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-semibold">{benefit.title}</h3>
                   <p className="text-muted-foreground">{benefit.description}</p>
-                </div>
-
-                {/* Subtle green hover overlay */}
+                </CardContent>
                 <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Stay Connected Section */}
+      <section className="py-16 px-4 bg-background text-foreground transition-colors duration-700">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-10 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold mb-3">
+              Stay{" "}
+              <span className="bg-gradient-primary bg-clip-text text-transparent">
+                Connected
+              </span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Explore our latest content and upcoming activities
+            </p>
+          </div>
 
-    {/* Latest Blogs and Events Section */}
-        <section className="py-16 px-4 bg-background text-foreground transition-colors duration-700">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-10 animate-fade-in">
-              <h2 className="text-4xl md:text-5xl font-bold mb-3">
-                Stay{" "}
-                <span className="bg-gradient-primary bg-clip-text text-transparent">
-                  Connected
-                </span>
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Explore our latest content and upcoming activities
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6 animate-fade-in-up">
-              {/* Read Our Blogs Card */}
-              <div className="relative group overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow bg-black p-6 sm:p-8">
+          <div className="grid md:grid-cols-2 gap-6 animate-fade-in-up">
+            {/* Read Our Blogs */}
+            <Card className="group relative overflow-hidden border-0 bg-transparent rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow p-6 sm:p-8">
+              <CardContent className="relative z-10">
                 <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-green-900/10 text-green-500 group-hover:bg-green-900/20 mb-4 sm:mb-6">
                   <BookOpen className="h-8 w-8" />
                 </div>
@@ -232,110 +203,38 @@ const Index = () => {
                   Read Blogs
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                {/* Subtle green hover overlay */}
-                <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
-              </div>
+              </CardContent>
+              <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+            </Card>
 
-              {/* View Events Card */}
-              <Link to="/events" className="relative group">
-                <div className="overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow bg-black p-6 sm:p-8 h-full">
+            {/* Explore Resources */}
+            <Link to="/resources">
+              <Card className="group relative overflow-hidden border-0 bg-transparent rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow p-6 sm:p-8 h-full">
+                <CardContent className="relative z-10">
                   <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-green-900/10 text-green-500 group-hover:bg-green-900/20 mb-4 sm:mb-6">
-                    <CalendarDays className="h-8 w-8" />
+                    <FolderOpen className="h-8 w-8" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 sm:mb-4">View Events</h3>
+                  <h3 className="text-2xl font-bold mb-3 sm:mb-4">Explore Resources</h3>
                   <p className="text-muted-foreground mb-4 sm:mb-6">
-                    Check out our upcoming workshops, hackathons, and tech talks.
-                    Join us to learn and grow together.
+                    Access curated learning materials, datasets, and tools to enhance your
+                    understanding of data science, AI, and machine learning.
                   </p>
                   <Button
                     variant="outline"
                     className="group border-primary/50 hover:bg-primary/10"
                   >
-                    Explore Events
+                    Explore Resources
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
-                  {/* Subtle green hover overlay */}
-                  <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                </div>
-              </Link>
-            </div>
+                </CardContent>
+                <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+              </Card>
+            </Link>
           </div>
-        </section>
-
+        </div>
+      </section>
     </div>
   );
 };
 
 export default Index;
-
-// ---------------- Non-interactive Flowing Network ----------------
-function NonInteractiveNetwork() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let width = (canvas.width = canvas.offsetWidth);
-    let height = (canvas.height = canvas.offsetHeight);
-
-    const nodes = Array.from({ length: 30 }, (_, i) => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-    }));
-
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      // Draw lines
-      for (let i = 0; i < nodes.length; i++) {
-        const a = nodes[i];
-        for (let j = i + 1; j < nodes.length; j++) {
-          const b = nodes[j];
-          const dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < 120) {
-            ctx.strokeStyle = `hsla(168, 76%, 55%, ${1 - dist / 120})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw nodes
-      nodes.forEach((node) => {
-        node.x += node.vx;
-        node.y += node.vy;
-
-        if (node.x < 0 || node.x > width) node.vx *= -1;
-        if (node.y < 0 || node.y > height) node.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = "hsl(168, 76%, 55%)";
-        ctx.shadowColor = "hsl(168, 76%, 55%)";
-        ctx.shadowBlur = 10;
-        ctx.fill();
-      });
-
-      requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    const handleResize = () => {
-      width = canvas.width = canvas.offsetWidth;
-      height = canvas.height = canvas.offsetHeight;
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full rounded-full" />;
-}

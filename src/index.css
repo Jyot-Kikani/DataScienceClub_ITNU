@@ -8,7 +8,7 @@
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
   }
-
+  
   @keyframes gradient {
     0% {
       background-position: 0% 50%;
@@ -22,43 +22,29 @@
   }
 }
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 180 40% 98%;         /* mid greenish-blue - easier on eyes */
-    --foreground: 220 15% 25%;         /* darkish gray-blue for text */
-
-    --card: 180 50% 93%;                /* soft card bg */
-    --card-foreground: 220 15% 25%;     /* text on card */
-
-    --popover: 180 50% 93%;             /* popover background */
-    --popover-foreground: 220 15% 25%;  /* text on popover */
-
-    --primary: 168 76% 55%;             /* teal-green */
-    --primary-foreground: 210 40% 98%;  /* light text */
+    --background: 180 40% 98%;
+    --foreground: 220 15% 25%;
+    --card: 180 50% 93%;
+    --card-foreground: 220 15% 25%;
+    --popover: 180 50% 93%;
+    --popover-foreground: 220 15% 25%;
+    --primary: 168 76% 55%;
+    --primary-foreground: 210 40% 98%;
     --primary-glow: 168 76% 65%;
-
-    --secondary: 200 80% 70%;           /* bright cyan-blue */
-    --secondary-foreground: 0 0% 100%;  /* text on secondary elements */
-
-    --muted: 180 50% 85%;               /* muted light blue */
-    --muted-foreground: 220 15% 45%;    /* muted text */
-
-    --accent: 280 70% 75%;              /* light purple */
-    --accent-foreground: 0 0% 100%;     /* text on accent elements */
-
-    --destructive: 0 84% 60%;           /* red for destructive actions */
+    --secondary: 200 80% 70%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 180 50% 85%;
+    --muted-foreground: 220 15% 45%;
+    --accent: 280 70% 75%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 180 50% 80%;              /* soft borders */
-    --input: 180 50% 90%;               /* input background */
-    --ring: 168 76% 55%;                /* focus ring */
-
+    --border: 180 50% 80%;
+    --input: 180 50% 90%;
+    --ring: 168 76% 55%;
     --radius: 0.75rem;
-
     --gradient-primary: linear-gradient(135deg, hsl(168, 76%, 55%), hsl(280, 70%, 75%));
     --gradient-secondary: linear-gradient(135deg, hsl(168, 76%, 55%) 0%, hsl(200, 85%, 65%) 50%, hsl(280, 70%, 75%) 100%);
     --glow-primary: 0 0 40px hsl(168 76% 55% / 0.3);
@@ -66,35 +52,26 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 0 0% 0%;              /* complete black */
+    --background: 0 0% 0%;
     --foreground: 210 40% 98%;
-    
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-    
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    
-    --primary: 150 70% 50%;             /* vibrant green */
+    --primary: 150 70% 50%;
     --primary-foreground: 210 40% 98%;
     --primary-glow: 150 70% 60%;
-    
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-    
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 150 70% 50%;
-
     --gradient-primary: linear-gradient(135deg, hsl(150, 70%, 50%), hsl(220, 80%, 60%), hsl(280, 75%, 60%));
     --gradient-secondary: linear-gradient(135deg, hsl(150, 70%, 50%) 0%, hsl(220, 80%, 60%) 50%, hsl(280, 75%, 60%) 100%);
     --glow-primary: 0 0 50px hsl(150 70% 50% / 0.4);
@@ -110,16 +87,19 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 
-  /* Additional background styling for dark mode with gradient effects */
   .dark body {
-    background: 
+    background:
       radial-gradient(ellipse at top, hsl(220 80% 20% / 0.1) 0%, transparent 50%),
       radial-gradient(ellipse at bottom, hsl(280 75% 20% / 0.1) 0%, transparent 50%),
       hsl(0 0% 0%);
   }
 
-  /* Additional background styling for light mode */
   .light body {
     background: hsl(180 40% 98%);
+  }
+
+  /* ✅ Neural animation polish */
+  canvas {
+    transition: var(--transition-smooth);
   }
 }
