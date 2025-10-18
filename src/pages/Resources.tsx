@@ -1,205 +1,651 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React, { useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Code2, Database, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import {
+  BookOpen,
+  Sparkles,
+  Activity,
+  ArrowRight,
+  ChevronDown,
+  Youtube,
+  ExternalLink,
+} from "lucide-react";
 
-const Resources = () => {
-  const learningPaths = [
-    {
-      level: "Beginner",
-      title: "Start Your Data Science Journey",
-      skills: ["Python Basics", "Statistics", "Data Visualization", "Pandas & NumPy"],
-      color: "bg-green-500/10 text-green-500 border-green-500/20",
-    },
-    {
-      level: "Intermediate",
-      title: "Master Machine Learning",
-      skills: ["ML Algorithms", "Scikit-learn", "Feature Engineering", "Model Evaluation"],
-      color: "bg-blue-500/10 text-blue-500 border-blue-500/20",
-    },
-    {
-      level: "Advanced",
-      title: "Deep Learning & AI",
-      skills: ["Neural Networks", "TensorFlow", "PyTorch", "Computer Vision", "NLP"],
-      color: "bg-purple-500/10 text-purple-500 border-purple-500/20",
-    },
-  ];
+/**
+ * Resources.tsx
+ * Beautiful zig-zag timeline with scrolling progress line
+ * Expandable resources on demand
+ */
 
-  const tools = [
-    { name: "Python", icon: Code2, category: "Programming" },
-    { name: "Jupyter", icon: BookOpen, category: "IDE" },
-    { name: "TensorFlow", icon: Code2, category: "ML Framework" },
-    { name: "PyTorch", icon: Code2, category: "ML Framework" },
-    { name: "Scikit-learn", icon: Code2, category: "Library" },
-    { name: "Pandas", icon: Database, category: "Data Processing" },
-  ];
+/* ---------- Phase data with enhanced gradient colors ---------- */
+const PHASES = [
+  {
+    id: 0,
+    title: "Phase 0 — Building Your AI Survival Kit",
+    subtitle: "Math, Probability & Statistics fundamentals",
+    summary: "Gear up with Linear Algebra, Calculus, Probability & Statistics — the mathematical backbone of all ML/DL.",
+    topics: [
+      "Linear Algebra (vectors, matrices, eigenvalues, SVD)",
+      "Calculus (derivatives, gradients, Jacobian, Hessian)",
+      "Probability (random variables, distributions, Bayes)",
+      "Statistics (descriptive & inferential, hypothesis testing)",
+    ],
+    resources: [
+      { 
+        label: "Khan Academy — Calculus", 
+        url: "https://www.khanacademy.org/math/calculus-1",
+        type: "website"
+      },
+      { 
+        label: "3Blue1Brown — Essence of Linear Algebra", 
+        url: "https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab",
+        type: "youtube"
+      },
+      { 
+        label: "MIT 18.06 Linear Algebra (Strang)", 
+        url: "https://ocw.mit.edu",
+        type: "website"
+      },
+      { 
+        label: "Mathematics for Machine Learning (Free Book)", 
+        url: "https://mml-book.github.io/",
+        type: "book"
+      },
+    ],
+    gradient: "from-green-500/20 via-green-600/10 to-emerald-500/20",
+    bulletColor: "from-green-400 to-green-600",
+    borderColor: "border-green-500/30",
+    glowColor: "hover:shadow-green-500/20",
+    lineColor: "from-green-400 to-green-500",
+  },
 
-  const courses = [
-    {
-      title: "Machine Learning by Andrew Ng",
-      platform: "Coursera",
-      type: "Free",
-      link: "#",
-    },
-    {
-      title: "Python for Data Science",
-      platform: "DataCamp",
-      type: "Paid",
-      link: "#",
-    },
-    {
-      title: "Deep Learning Specialization",
-      platform: "Coursera",
-      type: "Paid",
-      link: "#",
-    },
-  ];
+  {
+    id: 1,
+    title: "Phase 1 — Coding Foundations",
+    subtitle: "Python, NumPy, Pandas, SQL, Git, Conda, LaTeX",
+    summary: "Build the essential toolkit: Python programming, data handling libraries, SQL for queries, and developer tools for reproducible work.",
+    topics: [
+      "Python Basics (syntax, OOP, file I/O)",
+      "Linux CLI basics",
+      "NumPy (arrays, broadcasting)",
+      "Pandas (dataframes, cleaning, aggregation)",
+      "Data visualization (Matplotlib, Seaborn)",
+      "SQL (joins, aggregations, modeanalytics-style queries)",
+      "Git & GitHub, Conda environments, LaTeX/Overleaf",
+    ],
+    resources: [
+      { 
+        label: "Google's Python Class", 
+        url: "https://developers.google.com/edu/python",
+        type: "website"
+      },
+      { 
+        label: "Think Python (Free Book)", 
+        url: "https://allendowney.github.io/ThinkPython/",
+        type: "book"
+      },
+      { 
+        label: "NumPy Quickstart", 
+        url: "https://numpy.org/doc/stable/user/quickstart.html",
+        type: "website"
+      },
+      { 
+        label: "Corey Schafer - Python Tutorials", 
+        url: "https://www.youtube.com/playlist?list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7",
+        type: "youtube"
+      },
+    ],
+    gradient: "from-emerald-500/20 via-emerald-600/10 to-cyan-500/20",
+    bulletColor: "from-emerald-400 to-emerald-600",
+    borderColor: "border-emerald-500/30",
+    glowColor: "hover:shadow-emerald-500/20",
+    lineColor: "from-emerald-400 to-emerald-500",
+  },
 
-  const videos = [
-    { title: "Introduction to Machine Learning", channel: "Data Science Club", duration: "45:32" },
-    { title: "Python for Data Science - Complete Tutorial", channel: "Tech Academy", duration: "2:15:20" },
-    { title: "Deep Learning Fundamentals", channel: "AI Learning", duration: "1:30:15" },
-    { title: "Data Visualization with Python", channel: "Code Masters", duration: "55:40" },
-  ];
+  {
+    id: 2,
+    title: "Phase 2 — Machine Learning",
+    subtitle: "Supervised / Unsupervised / Model evaluation & practical tools",
+    summary: "Learn supervised and unsupervised algorithms, preprocessing, validation, feature engineering, and practical scikit-learn workflows.",
+    topics: [
+      "Foundations: supervised/unsupervised/reinforcement",
+      "Data preprocessing (scaling, encoding, imputation)",
+      "Supervised algorithms (LR, trees, SVM, kNN, ensembles)",
+      "Unsupervised (k-means, hierarchical, DBSCAN, PCA, t-SNE)",
+      "Evaluation & validation (confusion matrix, ROC/AUC, CV)",
+      "Feature engineering & model tuning (GridSearch, CV)",
+      "Mini projects: house prices, spam detection, segmentation",
+    ],
+    resources: [
+      { 
+        label: "Andrew Ng — Machine Learning (Coursera)", 
+        url: "https://www.coursera.org/learn/machine-learning",
+        type: "course"
+      },
+      { 
+        label: "Kaggle Micro-Courses", 
+        url: "https://www.kaggle.com/learn/overview",
+        type: "course"
+      },
+      { 
+        label: "StatQuest with Josh Starmer", 
+        url: "https://www.youtube.com/@statquest",
+        type: "youtube"
+      },
+      { 
+        label: "Hands-On ML (Aurélien Géron)", 
+        url: "https://github.com/ageron/handson-ml2",
+        type: "book"
+      },
+    ],
+    gradient: "from-cyan-500/20 via-cyan-600/10 to-blue-500/20",
+    bulletColor: "from-cyan-400 to-cyan-600",
+    borderColor: "border-cyan-500/30",
+    glowColor: "hover:shadow-cyan-500/20",
+    lineColor: "from-cyan-400 to-cyan-500",
+  },
+
+  {
+    id: 3,
+    title: "Phase 3 — Deep Learning & AI",
+    subtitle: "Neural nets, CNNs, RNNs, Transformers, Generative models",
+    summary: "Move from ML to deep learning: design, train and evaluate neural networks; explore vision, sequence models and transformer-based architectures.",
+    topics: [
+      "Neural network foundations (MLPs, activations, backprop)",
+      "Training tricks (optimizers, regularization, batch norm)",
+      "CNNs & vision architectures (ResNet, VGG, Inception)",
+      "RNNs, LSTMs, GRUs for sequence data",
+      "Attention & Transformers (BERT, GPT, ViT)",
+      "Generative models (VAEs, GANs, Diffusion Models)",
+      "Tools: TensorFlow/Keras, PyTorch, Hugging Face",
+      "Mini projects: image classifier, sentiment analysis, text generation",
+    ],
+    resources: [
+      { 
+        label: "Dive into Deep Learning (D2L)", 
+        url: "https://d2l.ai/",
+        type: "book"
+      },
+      { 
+        label: "CS231n (Stanford) — Computer Vision", 
+        url: "https://cs231n.stanford.edu/",
+        type: "course"
+      },
+      { 
+        label: "3Blue1Brown — Neural Networks", 
+        url: "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi",
+        type: "youtube"
+      },
+      { 
+        label: "Hugging Face — Learn", 
+        url: "https://huggingface.co/learn",
+        type: "website"
+      },
+    ],
+    gradient: "from-blue-500/20 via-blue-600/10 to-violet-500/20",
+    bulletColor: "from-blue-400 to-blue-600",
+    borderColor: "border-blue-500/30",
+    glowColor: "hover:shadow-blue-500/20",
+    lineColor: "from-blue-400 to-blue-500",
+  },
+
+  {
+    id: 4,
+    title: "Phase 4 — Only for the Brave of Heart",
+    subtitle: "Research-level topics: SSMs, RL, Multi-modality, Diffusion",
+    summary: "Advanced research topics — read papers, implement experiments, and follow cutting-edge repos. Expect math-heavy concepts and experimental work.",
+    topics: [
+      "State-Space Models & long-range sequence modeling (S4)",
+      "Multi-modal models (text+image, CLIP-like systems)",
+      "Reinforcement Learning (deep RL theory & practice)",
+      "Diffusion Models & advanced generative techniques",
+    ],
+    resources: [
+      { 
+        label: "Spinning Up in Deep RL (OpenAI)", 
+        url: "https://spinningup.openai.com/en/latest/",
+        type: "website"
+      },
+      { 
+        label: "Diffusion Models — Lilian Weng", 
+        url: "https://lilianweng.github.io/posts/2021-07-11-diffusion-models/",
+        type: "article"
+      },
+      { 
+        label: "Stanford CS285 — Deep RL", 
+        url: "http://rail.eecs.berkeley.edu/deeprlcourse/",
+        type: "course"
+      },
+      { 
+        label: "Yannic Kilcher — Paper Explanations", 
+        url: "https://www.youtube.com/@YannicKilcher",
+        type: "youtube"
+      },
+    ],
+    gradient: "from-violet-500/20 via-violet-600/10 to-rose-500/20",
+    bulletColor: "from-violet-400 to-violet-600",
+    borderColor: "border-violet-500/30",
+    glowColor: "hover:shadow-violet-500/20",
+    lineColor: "from-violet-400 to-violet-500",
+  },
+
+  {
+    id: 5,
+    title: "Phase 5 — What's Next?",
+    subtitle: "MLOps, deployment, continuous learning & contributing",
+    summary: "This roadmap is a launchpad — move into deployment, MLOps, cloud, open-source, or research. Keep learning, building, and contributing.",
+    topics: [
+      "MLOps & Deployment (Docker, Kubernetes, CI/CD for ML)",
+      "Cloud ML Platforms (AWS/GCP/Azure ML services)",
+      "Open-source & community contributions",
+      "Reading papers, publishing, and continuous learning",
+    ],
+    resources: [
+      { 
+        label: "MLOps Zoomcamp", 
+        url: "https://github.com/DataTalksClub/mlops-zoomcamp",
+        type: "course"
+      },
+      { 
+        label: "Full Stack Deep Learning", 
+        url: "https://fullstackdeeplearning.com/",
+        type: "course"
+      },
+      { 
+        label: "Made With ML — MLOps", 
+        url: "https://madewithml.com/topics/mlops/",
+        type: "website"
+      },
+      { 
+        label: "Docker & Kubernetes Tutorials", 
+        url: "https://www.youtube.com/playlist?list=PLy7NrYWoggjziYQIDorlXjTvvwweTYocP",
+        type: "youtube"
+      },
+    ],
+    gradient: "from-rose-500/20 via-rose-600/10 to-lime-500/20",
+    bulletColor: "from-rose-400 to-rose-600",
+    borderColor: "border-rose-500/30",
+    glowColor: "hover:shadow-rose-500/20",
+    lineColor: "from-rose-400 to-rose-500",
+  },
+];
+
+/* ---------- Timeline Bullet Component ---------- */
+const TimelineBullet: React.FC<{ phase: typeof PHASES[0]; isActive: boolean }> = ({ phase, isActive }) => {
+  return (
+    <div className="relative z-20">
+      {/* Glowing effect when active */}
+      {isActive && (
+        <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${phase.bulletColor} blur-sm opacity-70 animate-pulse`} />
+      )}
+      
+      {/* Main bullet */}
+      <div className={`relative w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br ${phase.bulletColor} text-white font-bold text-lg shadow-lg border-2 border-white/20 backdrop-blur-sm transition-all duration-300 ${
+        isActive ? 'scale-110 shadow-xl' : 'scale-100'
+      }`}>
+        {phase.id}
+      </div>
+    </div>
+  );
+};
+
+/* ---------- Resource Link Component ---------- */
+const ResourceLink: React.FC<{ resource: any }> = ({ resource }) => {
+  const getIcon = (type: string) => {
+    switch (type) {
+      case 'youtube': return <Youtube className="h-4 w-4 text-red-400" />;
+      case 'book': return <BookOpen className="h-4 w-4 text-blue-400" />;
+      case 'course': return <Activity className="h-4 w-4 text-green-400" />;
+      case 'article': return <ExternalLink className="h-4 w-4 text-orange-400" />;
+      default: return <ExternalLink className="h-4 w-4 text-gray-400" />;
+    }
+  };
+
+  const getTypeLabel = (type: string) => {
+    switch (type) {
+      case 'youtube': return 'Video';
+      case 'book': return 'Book';
+      case 'course': return 'Course';
+      case 'article': return 'Article';
+      default: return 'Resource';
+    }
+  };
 
   return (
-    <div className="min-h-screen pt-24 pb-20 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <a
+      href={resource.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center gap-4 p-4 rounded-lg border border-border bg-background/50 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-primary/30"
+    >
+      {getIcon(resource.type)}
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-medium truncate">{resource.label}</p>
+        <p className="text-xs text-muted-foreground capitalize">{getTypeLabel(resource.type)}</p>
+      </div>
+      <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform flex-shrink-0" />
+    </a>
+  );
+};
+
+/* ---------- Progress Line Component ---------- */
+const ProgressLine: React.FC<{ activePhase: number }> = ({ activePhase }) => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const updateProgress = () => {
+      const timeline = document.getElementById('timeline-container');
+      if (!timeline) return;
+
+      const rect = timeline.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate how much of the timeline is visible and scrolled through
+      const start = windowHeight;
+      const end = -rect.height;
+      const progress = 1 - (rect.top - end) / (start - end);
+      
+      setScrollProgress(Math.max(0, Math.min(1, progress)));
+    };
+
+    window.addEventListener('scroll', updateProgress);
+    updateProgress(); // Initial calculation
+
+    return () => window.removeEventListener('scroll', updateProgress);
+  }, []);
+
+  const currentPhase = PHASES[activePhase];
+
+  return (
+    <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 z-0">
+      {/* Background line (simple gray) */}
+      <div className="absolute inset-0 bg-gray-600/20 rounded-full" />
+      
+      {/* Animated progress fill with current phase color only */}
+      <div 
+        className="absolute top-0 left-0 w-full rounded-full transition-all duration-300 ease-out"
+        style={{ 
+          height: `${scrollProgress * 100}%`,
+          background: currentPhase ? 
+            `linear-gradient(to bottom, ${currentPhase.lineColor})` :
+            'linear-gradient(to bottom, #10b981, #10b981)'
+        }}
+      />
+      
+      {/* Glowing progress indicator */}
+      <div 
+        className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white border-2 shadow-lg transition-all duration-300 backdrop-blur-sm z-20"
+        style={{ 
+          top: `${scrollProgress * 100}%`,
+          borderColor: currentPhase ? 
+            currentPhase.bulletColor.split(' ')[1].replace('from-', '#') : '#10b981',
+          boxShadow: `0 0 20px ${currentPhase ? 
+            currentPhase.bulletColor.split(' ')[1].replace('from-', '#').replace('400', '500') : '#10b981'}`
+        }}
+      />
+    </div>
+  );
+};
+
+/* ---------- Main Component ---------- */
+const Resources: React.FC = () => {
+  const [expandedPhase, setExpandedPhase] = useState<number | null>(null);
+  const [activePhase, setActivePhase] = useState<number>(0);
+
+  const toggleResources = (phaseId: number) => {
+    setExpandedPhase(expandedPhase === phaseId ? null : phaseId);
+  };
+
+  // Track which phase is currently in view
+  useEffect(() => {
+    const handleScroll = () => {
+      const timeline = document.getElementById('timeline-container');
+      if (!timeline) return;
+
+      const phases = document.querySelectorAll('[data-phase]');
+      const windowHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+
+      phases.forEach((phaseElement, index) => {
+        const rect = phaseElement.getBoundingClientRect();
+        const elementTop = rect.top + scrollY;
+        const elementBottom = rect.bottom + scrollY;
+        
+        // Check if phase is in the central viewport area
+        if (scrollY + windowHeight * 0.4 >= elementTop && scrollY + windowHeight * 0.6 <= elementBottom) {
+          setActivePhase(index);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen pt-24 pb-20 px-4 bg-background relative">
+      <div className="container mx-auto max-w-7xl relative">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Learning <span className="bg-gradient-primary bg-clip-text text-transparent">Resources</span>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Data Science <span className="bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">Roadmap</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to master data science
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            A progressive journey from mathematical foundations to cutting-edge research. 
+            Follow the colored path as concepts evolve in complexity.
           </p>
         </div>
 
-        {/* Learning Paths */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 animate-fade-in">Learning Paths</h2>
-          <div className="grid md:grid-cols-3 gap-6 animate-fade-in-up">
-            {learningPaths.map((path, index) => (
-              <Card
-                key={index}
-                className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
-              >
-                <CardHeader className="relative z-10">
-                  <Badge className={path.color}>{path.level}</Badge>
-                  <CardTitle className="mt-4">{path.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="relative z-10">
-                  <div className="space-y-2">
-                    {path.skills.map((skill) => (
-                      <div key={skill} className="flex items-center gap-2 text-sm">
-                        <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                        <span className="text-muted-foreground">{skill}</span>
+        {/* Timeline Container */}
+        <div id="timeline-container" className="relative">
+          <ProgressLine activePhase={activePhase} />
+          
+          {/* Timeline Items */}
+          <div className="space-y-12 lg:space-y-24 relative z-10">
+            {PHASES.map((phase, index) => {
+              const isEven = index % 2 === 0;
+              const isExpanded = expandedPhase === phase.id;
+              const isActive = activePhase === index;
+              const isPast = index < activePhase;
+              const isFuture = index > activePhase;
+              
+              return (
+                <div 
+                  key={phase.id} 
+                  className="relative"
+                  data-phase={phase.id}
+                >
+                  {/* Desktop Layout - Zig Zag */}
+                  <div className="hidden lg:flex items-center justify-center gap-4">
+                    {/* Left Side Content (Even indices) */}
+                    {isEven && (
+                      <div className="flex-1 flex justify-end pr-8">
+                        <div className="max-w-lg w-full">
+                          <PhaseCard 
+                            phase={phase} 
+                            isExpanded={isExpanded}
+                            isActive={isActive}
+                            isPast={isPast}
+                            isFuture={isFuture}
+                            onToggleResources={() => toggleResources(phase.id)}
+                          />
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
-              </Card>
-            ))}
-          </div>
-        </div>
+                    )}
 
-        {/* Tools & Libraries */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 animate-fade-in">Essential Tools & Libraries</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 animate-fade-in-up">
-            {tools.map((tool, index) => (
-              <Card
-                key={index}
-                className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow text-center"
-              >
-                <CardContent className="p-6 space-y-3 relative z-10">
-                  <div className="w-12 h-12 mx-auto rounded-lg bg-green-900/10 flex items-center justify-center text-green-500 group-hover:text-green-400 group-hover:scale-110 transition-transform">
-                    <tool.icon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">{tool.name}</p>
-                    <p className="text-xs text-muted-foreground">{tool.category}</p>
-                  </div>
-                </CardContent>
-                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Recommended Courses */}
-        <div className="mb-16 animate-fade-in-up">
-          <h2 className="text-3xl font-bold mb-8">Recommended Courses</h2>
-          <div className="space-y-4">
-            {courses.map((course, index) => (
-              <Card
-                key={index}
-                className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
-              >
-                <CardContent className="p-6 relative z-10">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold mb-2 group-hover:text-green-400 transition-colors">
-                        {course.title}
-                      </h3>
-                      <div className="flex gap-3">
-                        <Badge variant="outline">{course.platform}</Badge>
-                        <Badge className={course.type === "Free" ? "bg-green-500/10 text-green-500" : "bg-blue-500/10 text-blue-500"}>
-                          {course.type}
-                        </Badge>
-                      </div>
+                    {/* Center Bullet with proper spacing */}
+                    <div className="flex-shrink-0 w-20 flex justify-center relative z-20">
+                      <TimelineBullet phase={phase} isActive={isActive} />
                     </div>
-                    <Button variant="outline" className="group/btn">
-                      View Course
-                      <ExternalLink className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
+
+                    {/* Right Side Content (Odd indices) */}
+                    {!isEven && (
+                      <div className="flex-1 flex justify-start pl-8">
+                        <div className="max-w-lg w-full">
+                          <PhaseCard 
+                            phase={phase} 
+                            isExpanded={isExpanded}
+                            isActive={isActive}
+                            isPast={isPast}
+                            isFuture={isFuture}
+                            onToggleResources={() => toggleResources(phase.id)}
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </CardContent>
-                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
-              </Card>
-            ))}
+
+                  {/* Mobile Layout - Stacked */}
+                  <div className="lg:hidden flex gap-6 pl-16 relative z-10">
+                    <div className="flex-shrink-0 w-12 flex justify-center relative z-20">
+                      <TimelineBullet phase={phase} isActive={isActive} />
+                    </div>
+                    <div className="flex-1">
+                      <PhaseCard 
+                        phase={phase} 
+                        isExpanded={isExpanded}
+                        isActive={isActive}
+                        isPast={isPast}
+                        isFuture={isFuture}
+                        onToggleResources={() => toggleResources(phase.id)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-       {/* YouTube Videos */}
-      <div className="animate-fade-in-up">
-        <h2 className="text-3xl font-bold mb-8">Featured YouTube Videos</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {[
-            { title: "Introduction to Machine Learning", channel: "Data Science Club", duration: "45:32" },
-            { title: "Python for Data Science - Complete Tutorial", channel: "Tech Academy", duration: "2:15:20" },
-            { title: "Deep Learning Fundamentals", channel: "AI Learning", duration: "1:30:15" },
-            { title: "Data Visualization with Python", channel: "Code Masters", duration: "55:40" },
-          ].map((video, index) => (
-            <Card
-              key={index}
-              className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
-            >
-              <CardContent className="p-6 flex gap-4 relative z-10">
-                <div className="w-24 h-24 flex-shrink-0 rounded-lg bg-gradient-primary/20 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground">
-                    ▶
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
-                    {video.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-2">{video.channel}</p>
-                  <Badge variant="outline" className="text-xs">{video.duration}</Badge>
-                </div>
-              </CardContent>
-
-              {/* Subtle green hover overlay */}
-              <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
-            </Card>
-          ))}
+        {/* Footer CTA */}
+        <div className="mt-20 text-center relative z-10">
+          <div className="inline-flex items-center gap-4 bg-muted/10 p-6 rounded-2xl border border-green-500/20 backdrop-blur-sm">
+            <Sparkles className="h-6 w-6 text-green-400" />
+            <div>
+              <p className="text-lg font-semibold text-foreground">
+                Ready to begin your journey?
+              </p>
+              <p className="text-muted-foreground mt-1">
+                Start with Phase 0 and progress sequentially. Build projects at each stage!
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-
       </div>
     </div>
+  );
+};
+
+/* ---------- Phase Card Component ---------- */
+const PhaseCard: React.FC<{ 
+  phase: typeof PHASES[0]; 
+  isExpanded: boolean;
+  isActive: boolean;
+  isPast: boolean;
+  isFuture: boolean;
+  onToggleResources: () => void;
+}> = ({ phase, isExpanded, isActive, isPast, isFuture, onToggleResources }) => {
+  const getCardOpacity = () => {
+    if (isActive) return 'opacity-100 scale-105';
+    if (isPast) return 'opacity-70 scale-100';
+    if (isFuture) return 'opacity-50 scale-95';
+    return 'opacity-100 scale-100';
+  };
+
+  const getCardGlow = () => {
+    if (isActive) return phase.glowColor.replace('hover:', '') + ' shadow-xl';
+    return '';
+  };
+
+  return (
+    <Card className={`group relative overflow-hidden border ${phase.borderColor} bg-gradient-to-br from-background/90 to-background/70 backdrop-blur-sm transition-all duration-500 hover:scale-105 ${phase.glowColor} ${getCardGlow()} ${getCardOpacity()}`}>
+      {/* Animated Gradient Background */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${phase.gradient} transition-opacity duration-500 ${
+        isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+      }`} />
+      
+      <CardHeader className="relative z-10 pb-4">
+        <div className="flex items-center justify-between mb-3">
+          <Badge className={`bg-gradient-to-r ${phase.bulletColor} text-white border-0 font-semibold backdrop-blur-sm transition-all duration-300 ${
+            isActive ? 'scale-105' : 'scale-100'
+          }`}>
+            Phase {phase.id}
+          </Badge>
+          <Activity className={`h-5 w-5 transition-all duration-300 ${
+            isActive ? 'text-foreground scale-110' : 'text-muted-foreground'
+          }`} />
+        </div>
+        
+        <CardTitle className="text-xl font-bold leading-tight transition-all duration-300">
+          {phase.title}
+        </CardTitle>
+        
+        <p className="text-sm text-muted-foreground mt-2 transition-all duration-300">
+          {phase.subtitle}
+        </p>
+      </CardHeader>
+
+      <CardContent className="relative z-10 space-y-6">
+        {/* Summary */}
+        <p className="text-foreground/90 leading-relaxed transition-all duration-300">
+          {phase.summary}
+        </p>
+
+        {/* Core Topics */}
+        <div>
+          <h4 className="text-sm font-semibold mb-3 uppercase tracking-wide text-muted-foreground transition-all duration-300">
+            Core Topics
+          </h4>
+          <ul className="space-y-2">
+            {phase.topics.map((topic, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm transition-all duration-300">
+                <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${phase.bulletColor} mt-1.5 flex-shrink-0 transition-all duration-300 ${
+                  isActive ? 'scale-110' : 'scale-100'
+                }`} />
+                <span className="text-foreground/80 leading-relaxed">{topic}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Resources Section - Expandable */}
+        <div className={`transition-all duration-500 overflow-hidden ${
+          isExpanded ? 'opacity-100 max-h-[1000px]' : 'opacity-0 max-h-0'
+        }`}>
+          <div className="space-y-4">
+            <h4 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+              Learning Resources
+            </h4>
+            <div className="space-y-3">
+              {phase.resources.map((resource, i) => (
+                <ResourceLink key={i} resource={resource} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Toggle Resources Button */}
+        <Button
+          onClick={onToggleResources}
+          variant="outline"
+          className={`w-full border ${phase.borderColor} bg-background/70 backdrop-blur-sm transition-all duration-300 hover:scale-105 ${phase.glowColor} ${
+            isActive ? 'scale-105' : 'scale-100'
+          }`}
+        >
+          <BookOpen className="h-4 w-4 mr-2" />
+          {isExpanded ? 'Hide Resources' : 'Show Resources'}
+          <ChevronDown className={`h-4 w-4 ml-2 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+        </Button>
+      </CardContent>
+    </Card>
   );
 };
 
