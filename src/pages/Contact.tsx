@@ -6,13 +6,13 @@ const Contact = () => {
     {
       title: "Club Email",
       icon: Mail,
-      link: "mailto:contact@nirmaDS.edu",
+      link: "mailto:dsc.it@nirmauni.ac.in",
       description: "For general inquiries and club information",
     },
     {
       title: "LinkedIn",
       icon: Linkedin,
-      link: "https://www.linkedin.com/in/your-linkedin-profile",
+      link: "https://www.linkedin.com/company/data-science-club-nirma-university",
       description: "Connect with us on LinkedIn",
     },
     {

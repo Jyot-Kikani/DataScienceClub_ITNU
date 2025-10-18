@@ -58,11 +58,11 @@ const PHASES = [
         type: "book"
       },
     ],
-    gradient: "from-green-500/20 via-green-600/10 to-emerald-500/20",
-    bulletColor: "from-green-400 to-green-600",
-    borderColor: "border-green-500/30",
-    glowColor: "hover:shadow-green-500/20",
-    lineColor: "from-green-400 to-green-500",
+    gradient: "from-emerald-500/20 via-green-600/10 to-teal-500/20",
+    bulletColor: "from-emerald-400 to-green-500",
+    borderColor: "border-emerald-500/30",
+    glowColor: "hover:shadow-emerald-500/30",
+    lineColor: "from-emerald-400 to-green-500",
   },
 
   {
@@ -101,11 +101,11 @@ const PHASES = [
         type: "youtube"
       },
     ],
-    gradient: "from-emerald-500/20 via-emerald-600/10 to-cyan-500/20",
-    bulletColor: "from-emerald-400 to-emerald-600",
-    borderColor: "border-emerald-500/30",
-    glowColor: "hover:shadow-emerald-500/20",
-    lineColor: "from-emerald-400 to-emerald-500",
+    gradient: "from-amber-400/20 via-amber-500/10 to-yellow-400/20",
+    bulletColor: "from-amber-300 to-yellow-400",
+    borderColor: "border-amber-400/30",
+    glowColor: "hover:shadow-amber-400/30",
+    lineColor: "from-amber-300 to-yellow-400",
   },
 
   {
@@ -117,7 +117,7 @@ const PHASES = [
       "Foundations: supervised/unsupervised/reinforcement",
       "Data preprocessing (scaling, encoding, imputation)",
       "Supervised algorithms (LR, trees, SVM, kNN, ensembles)",
-      "Unsupervised (k-means, hierarchical, DBSCAN, PCA, t-SNE)",
+      "Unsupervised (k-means, hierarchical, DBScan, PCA, t-SNE)",
       "Evaluation & validation (confusion matrix, ROC/AUC, CV)",
       "Feature engineering & model tuning (GridSearch, CV)",
       "Mini projects: house prices, spam detection, segmentation",
@@ -147,7 +147,7 @@ const PHASES = [
     gradient: "from-cyan-500/20 via-cyan-600/10 to-blue-500/20",
     bulletColor: "from-cyan-400 to-cyan-600",
     borderColor: "border-cyan-500/30",
-    glowColor: "hover:shadow-cyan-500/20",
+    glowColor: "hover:shadow-cyan-500/30",
     lineColor: "from-cyan-400 to-cyan-500",
   },
 
@@ -191,7 +191,7 @@ const PHASES = [
     gradient: "from-blue-500/20 via-blue-600/10 to-violet-500/20",
     bulletColor: "from-blue-400 to-blue-600",
     borderColor: "border-blue-500/30",
-    glowColor: "hover:shadow-blue-500/20",
+    glowColor: "hover:shadow-blue-500/30",
     lineColor: "from-blue-400 to-blue-500",
   },
 
@@ -231,7 +231,7 @@ const PHASES = [
     gradient: "from-violet-500/20 via-violet-600/10 to-rose-500/20",
     bulletColor: "from-violet-400 to-violet-600",
     borderColor: "border-violet-500/30",
-    glowColor: "hover:shadow-violet-500/20",
+    glowColor: "hover:shadow-violet-500/30",
     lineColor: "from-violet-400 to-violet-500",
   },
 
@@ -271,7 +271,7 @@ const PHASES = [
     gradient: "from-rose-500/20 via-rose-600/10 to-lime-500/20",
     bulletColor: "from-rose-400 to-rose-600",
     borderColor: "border-rose-500/30",
-    glowColor: "hover:shadow-rose-500/20",
+    glowColor: "hover:shadow-rose-500/30",
     lineColor: "from-rose-400 to-rose-500",
   },
 ];
@@ -322,18 +322,19 @@ const ResourceLink: React.FC<{ resource: any }> = ({ resource }) => {
       href={resource.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center gap-4 p-4 rounded-lg border border-border bg-background/50 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-primary/30"
+      className="flex items-center gap-4 p-4 rounded-lg border border-border bg-background/50 backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-blue-500/20"
     >
       {getIcon(resource.type)}
       <div className="flex-1 min-w-0">
         <p className="text-sm font-medium truncate">{resource.label}</p>
         <p className="text-xs text-muted-foreground capitalize">{getTypeLabel(resource.type)}</p>
       </div>
-      <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform flex-shrink-0" />
+      <ArrowRight className="h-4 w-4 flex-shrink-0" />
     </a>
   );
 };
 
+/* ---------- Progress Line Component ---------- */
 /* ---------- Progress Line Component ---------- */
 const ProgressLine: React.FC<{ activePhase: number }> = ({ activePhase }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -364,31 +365,30 @@ const ProgressLine: React.FC<{ activePhase: number }> = ({ activePhase }) => {
 
   return (
     <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 z-0">
-      {/* Background line (simple gray) */}
-      <div className="absolute inset-0 bg-gray-600/20 rounded-full" />
+      {/* Background line (light blue) */}
+      <div className="absolute inset-0 bg-sky-200/20 rounded-full" />
       
-      {/* Animated progress fill with current phase color only */}
+      {/* Animated progress fill with light blue color */}
       <div 
-        className="absolute top-0 left-0 w-full rounded-full transition-all duration-300 ease-out"
+        className="absolute top-0 left-0 w-full rounded-full transition-all duration-300 ease-out bg-gradient-to-b from-sky-400 to-blue-500"
         style={{ 
           height: `${scrollProgress * 100}%`,
-          background: currentPhase ? 
-            `linear-gradient(to bottom, ${currentPhase.lineColor})` :
-            'linear-gradient(to bottom, #10b981, #10b981)'
         }}
       />
       
-      {/* Glowing progress indicator */}
+      {/* Combined White Circle with Glow Effect */}
       <div 
-        className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white border-2 shadow-lg transition-all duration-300 backdrop-blur-sm z-20"
+        className="absolute left-1/2 -translate-x-1/2 transition-all duration-300 ease-out z-20"
         style={{ 
           top: `${scrollProgress * 100}%`,
-          borderColor: currentPhase ? 
-            currentPhase.bulletColor.split(' ')[1].replace('from-', '#') : '#10b981',
-          boxShadow: `0 0 20px ${currentPhase ? 
-            currentPhase.bulletColor.split(' ')[1].replace('from-', '#').replace('400', '500') : '#10b981'}`
         }}
-      />
+      >
+        {/* Glowing effect */}
+        <div className="absolute -inset-2 bg-sky-400 rounded-full blur-sm opacity-70 animate-pulse" />
+        
+        {/* White circle */}
+        <div className="relative w-4 h-4 rounded-full bg-white border-2 border-sky-500 shadow-lg" />
+      </div>
     </div>
   );
 };
@@ -553,20 +553,25 @@ const PhaseCard: React.FC<{
   isFuture: boolean;
   onToggleResources: () => void;
 }> = ({ phase, isExpanded, isActive, isPast, isFuture, onToggleResources }) => {
-  const getCardOpacity = () => {
+  const getCardEffect = () => {
     if (isActive) return 'opacity-100 scale-105';
-    if (isPast) return 'opacity-70 scale-100';
-    if (isFuture) return 'opacity-50 scale-95';
+    if (isPast) return 'opacity-20 scale-100 pointer-events-none';
+    if (isFuture) return 'opacity-10 scale-95 pointer-events-none';
     return 'opacity-100 scale-100';
   };
 
   const getCardGlow = () => {
-    if (isActive) return phase.glowColor.replace('hover:', '') + ' shadow-xl';
+    if (isActive) return phase.glowColor.replace('hover:', '') + ' shadow-2xl';
     return '';
   };
 
+  const getButtonGlow = () => {
+    if (isActive) return phase.glowColor.replace('hover:', '').replace('500', '400') + ' shadow-lg';
+    return phase.glowColor;
+  };
+
   return (
-    <Card className={`group relative overflow-hidden border ${phase.borderColor} bg-gradient-to-br from-background/90 to-background/70 backdrop-blur-sm transition-all duration-500 hover:scale-105 ${phase.glowColor} ${getCardGlow()} ${getCardOpacity()}`}>
+    <Card className={`group relative overflow-hidden border ${phase.borderColor} bg-gradient-to-br from-background/90 to-background/70 backdrop-blur-sm transition-all duration-500 hover:scale-105 ${phase.glowColor} ${getCardGlow()} ${getCardEffect()}`}>
       {/* Animated Gradient Background */}
       <div className={`absolute inset-0 bg-gradient-to-br ${phase.gradient} transition-opacity duration-500 ${
         isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
@@ -620,7 +625,7 @@ const PhaseCard: React.FC<{
         <div className={`transition-all duration-500 overflow-hidden ${
           isExpanded ? 'opacity-100 max-h-[1000px]' : 'opacity-0 max-h-0'
         }`}>
-          <div className="space-y-4">
+          <div className="space-y-4 pt-2">
             <h4 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
               Learning Resources
             </h4>
@@ -636,7 +641,7 @@ const PhaseCard: React.FC<{
         <Button
           onClick={onToggleResources}
           variant="outline"
-          className={`w-full border ${phase.borderColor} bg-background/70 backdrop-blur-sm transition-all duration-300 hover:scale-105 ${phase.glowColor} ${
+          className={`w-full border ${phase.borderColor} bg-background/70 backdrop-blur-sm transition-all duration-300 hover:scale-105 ${getButtonGlow()} ${
             isActive ? 'scale-105' : 'scale-100'
           }`}
         >
