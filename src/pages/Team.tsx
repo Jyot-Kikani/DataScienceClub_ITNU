@@ -50,19 +50,20 @@ const Team = () => {
   const domains = ["All", "Faculty", "Core Member", "Executive"];
   const [selectedDomain, setSelectedDomain] = useState("All");
 
-  const domainFilteredMembers = selectedDomain === "All"
-    ? filteredMembers
-    : filteredMembers.filter((member) => member.role === selectedDomain);
+  const domainFilteredMembers =
+    selectedDomain === "All"
+      ? filteredMembers
+      : filteredMembers.filter((member) => member.role === selectedDomain);
 
   return (
-    <div className="min-h-screen pt-24 pb-20 px-4">
+    <div className="min-h-screen pt-24 pb-20 px-4 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             Our <span className="bg-gradient-primary bg-clip-text text-transparent">Team</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
             Meet the passionate individuals driving our club forward
           </p>
 
@@ -74,7 +75,7 @@ const Team = () => {
               placeholder="Search by name, role, or domain..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
+              className="pl-10 bg-muted/30 border border-blue-900/30 backdrop-blur-sm"
             />
           </div>
         </div>
@@ -87,7 +88,7 @@ const Team = () => {
               onClick={() => setSelectedDomain(domain)}
               className={`cursor-pointer transition-all ${
                 selectedDomain === domain
-                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  ? "bg-gradient-primary text-primary-foreground shadow-glow"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
@@ -99,46 +100,55 @@ const Team = () => {
         {/* Members Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in-up">
           {domainFilteredMembers.map((member, index) => (
-            <div key={index} className="relative group overflow-hidden rounded-lg hover:-translate-y-1 transition-transform duration-300">
+            <div
+              key={index}
+              className="relative group overflow-hidden rounded-2xl hover:-translate-y-1 transition-transform duration-300 backdrop-blur-md"
+            >
               <Card className="border-0 bg-transparent shadow-none">
                 <CardContent className="p-6 text-center space-y-4 relative z-10">
-                  <div className="w-20 h-20 mx-auto rounded-full overflow-hidden flex items-center justify-center relative">
+                  <div className="w-20 h-20 mx-auto rounded-full overflow-hidden relative ring-2 ring-blue-700/40">
                     <img
                       src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover relative z-10"
                     />
-                    {/* Green glow around image */}
-                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-70 bg-gradient-to-r from-green-600 to-green-400 blur-xl transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-60 bg-gradient-to-r from-blue-700 to-blue-400 blur-xl transition-opacity duration-500"></div>
                   </div>
+
                   <div>
-                    <h3 className="font-bold group-hover:text-green-400 transition-colors">
+                    <h3 className="font-bold group-hover:text-blue-400 transition-colors">
                       {member.name}
                     </h3>
-                    <p className="text-sm text-primary font-medium">{member.role}</p>
+                    <p className="text-sm text-blue-500 font-medium">{member.role}</p>
                     <p className="text-xs text-muted-foreground">{member.year}</p>
                   </div>
-                  <Badge className="text-xs bg-primary/10 text-primary border-primary/20">
+
+                  <Badge className="text-xs bg-blue-900/20 text-blue-400 border-blue-700/30">
                     {member.domain}
                   </Badge>
+
                   <div className="flex flex-wrap gap-1 justify-center">
                     {member.skills.map((skill) => (
-                      <span key={skill} className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                      <span
+                        key={skill}
+                        className="text-xs px-2 py-1 rounded-full bg-muted/50 text-muted-foreground"
+                      >
                         {skill}
                       </span>
                     ))}
                   </div>
-                  <div className="flex justify-center gap-3 pt-2 border-t">
+
+                  <div className="flex justify-center gap-3 pt-2 border-t border-blue-900/20">
                     <a
                       href={member.linkedin}
-                      className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:bg-green-400 hover:text-white transition-all"
+                      className="w-8 h-8 rounded-full bg-muted/40 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all"
                       aria-label="LinkedIn"
                     >
                       <Linkedin className="h-4 w-4" />
                     </a>
                     <a
                       href={member.github}
-                      className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:bg-green-400 hover:text-white transition-all"
+                      className="w-8 h-8 rounded-full bg-muted/40 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all"
                       aria-label="GitHub"
                     >
                       <Github className="h-4 w-4" />
@@ -146,8 +156,7 @@ const Team = () => {
                   </div>
                 </CardContent>
               </Card>
-              {/* Card hover overlay */}
-              <div className="absolute inset-0 bg-green-700/20 opacity-0 group-hover:opacity-50 rounded-lg transition-opacity duration-500 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-blue-900/20 opacity-0 group-hover:opacity-40 rounded-2xl transition-opacity duration-500 pointer-events-none"></div>
             </div>
           ))}
         </div>

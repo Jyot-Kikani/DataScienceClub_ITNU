@@ -33,7 +33,7 @@ const Index = () => {
         minWidth: 600.0,
         scale: 1.0,
         scaleMobile: 1.0,
-        color: 0x739068,
+        color: 0x4a90e2,
         backgroundColor: 0x0d0d0d,
         points: 20.0,
         maxDistance: 18.0,
@@ -85,7 +85,7 @@ const Index = () => {
         <div className="max-w-4xl mx-auto text-center space-y-6 z-10 animate-fade-in-up">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight text-foreground drop-shadow-lg">
             Welcome to the{" "}
-            <span className="block bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
               Data Science Club
             </span>
           </h1>
@@ -156,13 +156,13 @@ const Index = () => {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-6 flex flex-col items-center text-center space-y-4 relative z-10">
-                  <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-green-900/10 text-green-500 group-hover:bg-green-900/20 transition-colors">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-blue-900/10 text-blue-500 group-hover:bg-blue-900/20 transition-colors">
                     <benefit.icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-semibold">{benefit.title}</h3>
                   <p className="text-muted-foreground">{benefit.description}</p>
                 </CardContent>
-                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-blue-900 to-blue-700 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               </Card>
             ))}
           </div>
@@ -188,7 +188,7 @@ const Index = () => {
             {/* Read Our Blogs */}
             <Card className="group relative overflow-hidden border-0 bg-transparent rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow p-6 sm:p-8">
               <CardContent className="relative z-10">
-                <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-green-900/10 text-green-500 group-hover:bg-green-900/20 mb-4 sm:mb-6">
+                <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-blue-900/10 text-blue-500 group-hover:bg-blue-900/20 mb-4 sm:mb-6">
                   <BookOpen className="h-8 w-8" />
                 </div>
                 <h3 className="text-2xl font-bold mb-3 sm:mb-4">Read Our Blogs</h3>
@@ -204,14 +204,14 @@ const Index = () => {
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </CardContent>
-              <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+              <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-t from-blue-900 to-blue-700 opacity-0 group-hover:opacity-10 transition-opacity"></div>
             </Card>
 
             {/* Explore Resources */}
             <Link to="/resources">
               <Card className="group relative overflow-hidden border-0 bg-transparent rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow p-6 sm:p-8 h-full">
                 <CardContent className="relative z-10">
-                  <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-green-900/10 text-green-500 group-hover:bg-green-900/20 mb-4 sm:mb-6">
+                  <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-blue-900/10 text-blue-500 group-hover:bg-blue-900/20 mb-4 sm:mb-6">
                     <FolderOpen className="h-8 w-8" />
                   </div>
                   <h3 className="text-2xl font-bold mb-3 sm:mb-4">Explore Resources</h3>
@@ -227,7 +227,7 @@ const Index = () => {
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
-                <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-t from-blue-900 to-blue-700 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               </Card>
             </Link>
           </div>

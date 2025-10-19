@@ -59,15 +59,15 @@ const About = () => {
               className="group border-0 bg-transparent relative overflow-hidden rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
             >
               <CardContent className="p-8 space-y-4 text-center relative z-10">
-                <div className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center bg-green-900/10">
-                  <item.icon className="h-6 w-6 text-green-500 transition-colors group-hover:text-green-400" />
+                <div className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center bg-blue-900/10">
+                  <item.icon className="h-6 w-6 text-blue-500 transition-colors group-hover:text-blue-400" />
                 </div>
                 <h2 className="text-2xl font-bold">{item.title}</h2>
                 <p className="text-muted-foreground leading-relaxed">{item.description}</p>
               </CardContent>
 
-              {/* Very subtle green hover overlay */}
-              <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+              {/* Very subtle blue hover overlay */}
+              <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-blue-900 to-blue-700 opacity-0 group-hover:opacity-10 transition-opacity"></div>
             </Card>
           ))}
         </div>
@@ -88,7 +88,7 @@ const About = () => {
               </p>
             </div>
           </CardContent>
-          <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+          <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-blue-900 to-blue-700 opacity-0 group-hover:opacity-10 transition-opacity"></div>
         </Card>
 
         {/* What We Do */}
@@ -101,13 +101,13 @@ const About = () => {
                 className="group relative overflow-hidden border-0 bg-transparent rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
               >
                 <CardContent className="p-6 space-y-4 text-center relative z-10">
-                  <div className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center bg-green-900/10">
-                    <activity.icon className="h-6 w-6 text-green-500 transition-colors group-hover:text-green-400" />
+                  <div className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center bg-blue-900/10">
+                    <activity.icon className="h-6 w-6 text-blue-500 transition-colors group-hover:text-blue-400" />
                   </div>
                   <h3 className="text-xl font-semibold">{activity.title}</h3>
                   <p className="text-muted-foreground">{activity.description}</p>
                 </CardContent>
-                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-blue-900 to-blue-700 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               </Card>
             ))}
           </div>

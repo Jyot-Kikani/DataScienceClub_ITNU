@@ -101,31 +101,31 @@ const Events = () => {
                         <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
                           {event.type}
                         </Badge>
-                        <h3 className="text-2xl font-bold group-hover:text-green-400 transition-colors">
+                        <h3 className="text-2xl font-bold group-hover:text-blue-400 transition-colors">
                           {event.title}
                         </h3>
                       </div>
                       <p className="text-muted-foreground">{event.description}</p>
                       <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-green-500" />
+                          <Calendar className="h-4 w-4 text-blue-500" />
                           <span>{event.date} • {event.time}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4 text-green-500" />
+                          <MapPin className="h-4 w-4 text-blue-500" />
                           <span>{event.venue}</span>
                         </div>
                       </div>
                     </div>
-                    <Button className="bg-green-700 hover:bg-green-600 text-primary-foreground group">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-primary-foreground group">
                       Register
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
                 </CardContent>
 
-                {/* Subtle green hover overlay */}
-                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                {/* Subtle blue hover overlay */}
+                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-blue-900 to-blue-700 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               </Card>
             ))}
           </div>
@@ -146,27 +146,27 @@ const Events = () => {
                         <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
                           {event.type}
                         </Badge>
-                        <h3 className="text-2xl font-bold group-hover:text-green-400 transition-colors">
+                        <h3 className="text-2xl font-bold group-hover:text-blue-400 transition-colors">
                           {event.title}
                         </h3>
                       </div>
                       <p className="text-muted-foreground">{event.description}</p>
                       <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-green-500" />
+                          <Calendar className="h-4 w-4 text-blue-500" />
                           <span>{event.date}</span>
                         </div>
                       </div>
                     </div>
-                    <Button variant="outline" className="border-green-700 hover:bg-green-900/10 group">
+                    <Button variant="outline" className="border-blue-600 hover:bg-blue-900/10 group">
                       View Material
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
                 </CardContent>
 
-                {/* Subtle green hover overlay */}
-                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                {/* Subtle blue hover overlay */}
+                <div className="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-blue-900 to-blue-700 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               </Card>
             ))}
           </div>

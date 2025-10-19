@@ -46,21 +46,21 @@ const Contact = () => {
               rel="noopener noreferrer"
               className="block"
             >
-              <Card className="group relative overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow cursor-pointer bg-black border border-green-900/20">
-                {/* Subtle green hover overlay */}
-                <div className="absolute inset-0 pointer-events-none rounded-xl bg-gradient-to-t from-green-900 to-green-800 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+              <Card className="group relative overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow cursor-pointer bg-black border border-blue-900/20">
+                {/* Subtle blue hover overlay */}
+                <div className="absolute inset-0 pointer-events-none rounded-xl bg-gradient-to-t from-blue-900 to-blue-700 opacity-0 group-hover:opacity-10 transition-opacity"></div>
 
                 <CardContent className="p-6 md:p-8 relative z-10">
                   <div className="flex flex-col md:flex-row md:items-center gap-6">
-                    {/* Icon with green background */}
-                    <div className="w-16 h-16 rounded-lg bg-green-900/10 text-green-500 flex items-center justify-center flex-shrink-0 group-hover:bg-green-900/20 transition-colors group-hover:scale-110 transition-transform">
+                    {/* Icon with blue background */}
+                    <div className="w-16 h-16 rounded-lg bg-blue-900/10 text-blue-500 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-900/20 group-hover:scale-110 transition-all duration-300">
                       <contact.icon className="h-8 w-8" />
                     </div>
 
                     <div className="flex-1">
                       <h3 className="text-2xl font-bold mb-2">{contact.title}</h3>
                       <p className="text-muted-foreground mb-3">{contact.description}</p>
-                      <span className="text-lg font-medium text-green-500 hover:underline break-all">
+                      <span className="text-lg font-medium text-blue-500 hover:underline break-all">
                         {contact.link}
                       </span>
                     </div>
