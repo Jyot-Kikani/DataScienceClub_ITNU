@@ -4,7 +4,7 @@
 
 @layer base {
   .animated-bg {
-    background: linear-gradient(-45deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(220 60% 50%), hsl(280 60% 50%));
+    background: linear-gradient(-45deg, hsl(210 100% 60%), hsl(200 95% 50%), hsl(220 90% 55%), hsl(230 85% 60%));
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
   }
@@ -24,30 +24,30 @@
 
 @layer base {
   :root {
-    --background: 180 40% 98%;
+    --background: 210 40% 98%;
     --foreground: 220 15% 25%;
-    --card: 180 50% 93%;
+    --card: 210 50% 95%;
     --card-foreground: 220 15% 25%;
-    --popover: 180 50% 93%;
+    --popover: 210 50% 95%;
     --popover-foreground: 220 15% 25%;
-    --primary: 168 76% 55%;
+    --primary: 217 91% 60%;
     --primary-foreground: 210 40% 98%;
-    --primary-glow: 168 76% 65%;
-    --secondary: 200 80% 70%;
+    --primary-glow: 217 91% 70%;
+    --secondary: 210 100% 70%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 180 50% 85%;
+    --muted: 210 50% 88%;
     --muted-foreground: 220 15% 45%;
-    --accent: 280 70% 75%;
+    --accent: 220 90% 70%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 180 50% 80%;
-    --input: 180 50% 90%;
-    --ring: 168 76% 55%;
+    --border: 210 50% 85%;
+    --input: 210 50% 92%;
+    --ring: 217 91% 60%;
     --radius: 0.75rem;
-    --gradient-primary: linear-gradient(135deg, hsl(168, 76%, 55%), hsl(280, 70%, 75%));
-    --gradient-secondary: linear-gradient(135deg, hsl(168, 76%, 55%) 0%, hsl(200, 85%, 65%) 50%, hsl(280, 70%, 75%) 100%);
-    --glow-primary: 0 0 40px hsl(168 76% 55% / 0.3);
+    --gradient-primary: linear-gradient(135deg, hsl(210, 100%, 60%), hsl(220, 90%, 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(210, 100%, 60%) 0%, hsl(217, 91%, 60%) 50%, hsl(230, 85%, 65%) 100%);
+    --glow-primary: 0 0 40px hsl(217 91% 60% / 0.3);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -58,9 +58,9 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 150 70% 50%;
+    --primary: 217 91% 60%;
     --primary-foreground: 210 40% 98%;
-    --primary-glow: 150 70% 60%;
+    --primary-glow: 217 91% 70%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
@@ -71,10 +71,10 @@
     --destructive-foreground: 0 0% 100%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 150 70% 50%;
-    --gradient-primary: linear-gradient(135deg, hsl(150, 70%, 50%), hsl(220, 80%, 60%), hsl(280, 75%, 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(150, 70%, 50%) 0%, hsl(220, 80%, 60%) 50%, hsl(280, 75%, 60%) 100%);
-    --glow-primary: 0 0 50px hsl(150 70% 50% / 0.4);
+    --ring: 217 91% 60%;
+    --gradient-primary: linear-gradient(135deg, hsl(210, 100%, 55%), hsl(220, 90%, 60%), hsl(230, 85%, 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(210, 100%, 55%) 0%, hsl(220, 90%, 60%) 50%, hsl(230, 85%, 65%) 100%);
+    --glow-primary: 0 0 50px hsl(217 91% 60% / 0.4);
   }
 }
 
@@ -89,13 +89,13 @@
 
   .dark body {
     background:
-      radial-gradient(ellipse at top, hsl(220 80% 20% / 0.1) 0%, transparent 50%),
-      radial-gradient(ellipse at bottom, hsl(280 75% 20% / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at top, hsl(210 100% 20% / 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, hsl(220 90% 20% / 0.15) 0%, transparent 50%),
       hsl(0 0% 0%);
   }
 
   .light body {
-    background: hsl(180 40% 98%);
+    background: hsl(210 40% 98%);
   }
 
   /* ✅ Neural animation polish */
