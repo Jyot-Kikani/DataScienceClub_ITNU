@@ -108,7 +108,8 @@ const config: Config = {
         "gradient-secondary": "var(--gradient-secondary)",
       },
       boxShadow: {
-        glow: "var(--glow-primary)",
+        glow: "var(--glow-primary)",       // existing
+        "card-glow": "0 0 20px rgba(59, 130, 246, 0.4)", // NEW blue glow for cards
       },
     },
   },
