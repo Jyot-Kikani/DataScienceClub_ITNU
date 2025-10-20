@@ -63,6 +63,12 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        cursorGlow: {
+          lightStart: "#3b82f6", // light blue
+          lightEnd: "#60a5fa",   // softer blue for trail
+          darkStart: "#0ea5e9",  // cyan-blue for dark mode
+          darkEnd: "#38bdf8",    // lighter cyan-blue for trail
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -108,8 +114,9 @@ const config: Config = {
         "gradient-secondary": "var(--gradient-secondary)",
       },
       boxShadow: {
-        glow: "var(--glow-primary)",       // existing
-        "card-glow": "0 0 20px rgba(59, 130, 246, 0.4)", // NEW blue glow for cards
+        glow: "var(--glow-primary)",
+        "card-glow": "0 0 20px rgba(59, 130, 246, 0.4)", // blue glow for cards
+        cursorGlow: "0 0 6px var(--tw-shadow-color), 0 0 8px var(--tw-shadow-color-secondary)",
       },
     },
   },

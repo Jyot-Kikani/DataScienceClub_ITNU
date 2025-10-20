@@ -5,6 +5,7 @@ type Particle = {
   y: number;
   size: number;
   opacity: number;
+  velocityX: number;
   velocityY: number;
 };
 
@@ -13,22 +14,38 @@ export const AnimatedCursor = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isClicking, setIsClicking] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
+  // Detect dark mode
+  useEffect(() => {
+    const root = document.documentElement;
+    const observer = new MutationObserver(() => {
+      setIsDark(root.classList.contains("dark"));
+    });
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+    setIsDark(root.classList.contains("dark"));
+    return () => observer.disconnect();
+  }, []);
+
+  // Mouse movement and interaction
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const newPos = { x: e.clientX, y: e.clientY };
       setPosition(newPos);
 
-      const newParticles: Particle[] = Array.from({ length: 2 }).map(() => ({
-        x: newPos.x + (Math.random() - 0.5) * 10,
-        y: newPos.y + (Math.random() - 0.5) * 10,
-        size: Math.random() * 4 + 2,
+      // Create shooting star particles
+      const newParticles: Particle[] = Array.from({ length: 1 }).map(() => ({
+        x: newPos.x,
+        y: newPos.y,
+        size: Math.random() * 2 + 1, // small size
         opacity: 1,
-        velocityY: Math.random() * 1 + 0.5,
+        velocityX: (Math.random() - 0.3) * 1.5, // slightly diagonal
+        velocityY: (Math.random() - 0.3) * 1.5,
       }));
 
       setParticles((prev) => [...prev, ...newParticles]);
 
+      // Detect hover
       const target = e.target as HTMLElement;
       const isInteractive = target.closest('a, button, input, textarea, [role="button"]');
       setIsHovering(!!isInteractive);
@@ -48,24 +65,30 @@ export const AnimatedCursor = () => {
     };
   }, []);
 
+  // Update particles
   useEffect(() => {
     const interval = setInterval(() => {
       setParticles((prev) =>
         prev
-          .map((p) => ({ ...p, y: p.y + p.velocityY, opacity: p.opacity - 0.02 }))
+          .map((p) => ({
+            ...p,
+            x: p.x + p.velocityX,
+            y: p.y + p.velocityY,
+            opacity: p.opacity - 0.03, // fade out
+          }))
           .filter((p) => p.opacity > 0)
       );
     }, 16);
-
     return () => clearInterval(interval);
   }, []);
 
-  const gradientGlow = "linear-gradient(135deg, #00ffae, #00c8ff)";
-  const darkBg = "#111";
+  // Theme-based blue shades
+  const glowStart = isDark ? "#0ea5e9" : "#3b82f6"; // bright blue
+  const glowEnd = isDark ? "#38bdf8" : "#60a5fa";   // soft trailing blue
 
   return (
     <>
-      {/* Falling particles */}
+      {/* Shooting Star Particles */}
       {particles.map((p, index) => (
         <div
           key={index}
@@ -77,16 +100,15 @@ export const AnimatedCursor = () => {
             top: `${p.y}px`,
             opacity: p.opacity,
             transform: "translate(-50%, -50%)",
-            pointerEvents: "none",
-            background: darkBg,
-            boxShadow: `0 0 6px rgba(0,255,174,0.8), 0 0 8px rgba(0,200,255,0.7)`,
+            background: `linear-gradient(135deg, ${glowStart}, ${glowEnd})`,
+            boxShadow: `0 0 ${p.size * 2}px ${glowStart}, 0 0 ${p.size * 3}px ${glowEnd}`,
           }}
         />
       ))}
 
       {/* Main Cursor */}
       <div
-        className="fixed pointer-events-none z-50 mix-blend-difference hidden md:block"
+        className="fixed pointer-events-none z-50 mix-blend-difference"
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
@@ -96,15 +118,12 @@ export const AnimatedCursor = () => {
         <div
           className="rounded-full transition-all duration-150"
           style={{
-            width: isClicking ? "28px" : isHovering ? "40px" : "36px", // shrink slightly on click
-            height: isClicking ? "28px" : isHovering ? "40px" : "36px",
-            background: darkBg,
-            border: `2px solid rgba(0,255,174,${isHovering ? "0.8" : "0.5"})`,
-            boxShadow: `
-              0 0 ${isClicking ? "12px" : "15px"} rgba(0,255,174,0.7), 
-              0 0 ${isClicking ? "18px" : "25px"} rgba(0,200,255,0.6),
-              inset 0 0 10px rgba(0,255,174,0.4)
-            `,
+            width: isClicking ? "14px" : isHovering ? "18px" : "12px",
+            height: isClicking ? "14px" : isHovering ? "18px" : "12px",
+            background: isHovering ? glowStart : glowEnd,
+            boxShadow: isHovering
+              ? `0 0 6px ${glowStart}, 0 0 8px ${glowEnd}`
+              : `0 0 3px ${glowStart}, 0 0 5px ${glowEnd}`,
           }}
         />
       </div>
